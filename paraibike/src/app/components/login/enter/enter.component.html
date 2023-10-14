@@ -14,14 +14,14 @@
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
                     </div>  
                     <hr/>    
-                    <form class="example-form">
+                    <form class="example-form" [formGroup]="formulario">
                         <div class="input-group input-group-sm mb-3 mt-4 input-color">
-                            <input type="email" class="form-control" placeholder="Email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            <input type="email" class="form-control" placeholder="Email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="email">
                         </div>
                         <div class="input-group input-group-sm mb-3 input-color">
-                            <input type="password" class="form-control" placeholder="Password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            <input type="password" class="form-control" placeholder="Password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="password"> 
                         </div>
-                        <button class="login p-2">LOGIN</button>
+                        <button type="submit" class="login p-2" (click)="enviar()">LOGIN</button>
                         <p class="mt-4"> Looking to create an account ?</p>
                     </form>
                 </mat-card-content>

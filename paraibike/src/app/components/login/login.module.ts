@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EnterComponent } from './enter/enter.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +12,8 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
   ],
   imports: [
     CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class LoginModule { }

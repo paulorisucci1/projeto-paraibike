@@ -10,10 +10,19 @@ import { AngularMaterialModule } from './components/angular-material/angular-mat
 import { LocadorModule } from './components/locador/locador.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
+import { CoreModule } from './core/core.module';
+import { BicicletaComponent } from './components/bicicleta/bicicleta.component';
+import { CadastroBicicletaComponent } from './components/bicicleta/cadastro-bicicleta/cadastro-bicicleta.component';
+import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bicicleta/listagem-bicicleta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    BicicletaComponent,
+    CadastroBicicletaComponent,
+    ListagemBicicletaComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginModule,
     BrowserAnimationsModule,
     LocadorModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

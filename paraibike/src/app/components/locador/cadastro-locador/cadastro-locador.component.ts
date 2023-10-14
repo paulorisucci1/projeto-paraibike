@@ -16,9 +16,11 @@ export class CadastroLocadorComponent {
     idUsuario = 0;
 
     formulario = new FormGroup({
-      nome: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       email: new FormControl('', Validators.email),
-      senha: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      password_confirmation: new FormControl('', Validators.required)
     })
   
     constructor(

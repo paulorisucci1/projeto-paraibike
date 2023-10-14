@@ -7,7 +7,7 @@ import { Usuario } from '../interface/usuario';
 })
 export class UsuarioService {
 
-  private readonly API = 'http://localhost:3000/users'; // url falsa para testes
+  private readonly API = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class UsuarioService {
   }
 
   alterarUsuario(usuario: Usuario){
-    return this.http.put(`${this.API}/${usuario.nome}`, usuario);
+    return this.http.put(`${this.API}/${usuario.username}`, usuario);
   }
 
 }

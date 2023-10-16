@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/interface/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { AlertaService } from 'src/app/service/alerta.service';
 
 @Component({
   selector: 'app-cadastro-locador',
@@ -26,16 +27,23 @@ export class CadastroLocadorComponent {
     constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private usuarioService: UsuarioService
+      private usuarioService: UsuarioService,
+      private alertaService: AlertaService
     ) {}
 
     enviar(){
       const usuario: Usuario = this.formulario.value as Usuario;
 
+      if (this.formulario.get('password')?.value != this.formulario.get('password_confirmation')?.value) {
+        console.log("Senhas não conferem");
+        return;
+      }
+
       this.usuarioService.criarUsuario(usuario).subscribe(() => {
-        console.log("Usuario criado");
+        this.alertaService.alertaSucesso("Usuario criado com sucesso");
       }, (error) => {
         console.log(error);
       });
     }
+
 }

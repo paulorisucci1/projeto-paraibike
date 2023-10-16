@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { CoreModule } from './core/core.module';
-import { BicicletaComponent } from './components/bicicleta/bicicleta.component';
 import { CadastroBicicletaComponent } from './components/bicicleta/cadastro-bicicleta/cadastro-bicicleta.component';
 import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bicicleta/listagem-bicicleta.component';
 
@@ -20,7 +19,6 @@ import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bici
   declarations: [
     AppComponent,
     HomeComponent,
-    BicicletaComponent,
     CadastroBicicletaComponent,
     ListagemBicicletaComponent,
   ],

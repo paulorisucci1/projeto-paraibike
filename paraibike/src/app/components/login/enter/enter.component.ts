@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/interface/login';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -19,7 +20,8 @@ export class EnterComponent {
 
   constructor(
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   enviar(): void {
@@ -28,6 +30,7 @@ export class EnterComponent {
     this.authService.criarLogin(login).subscribe((response: any) => {
       if (response.token) {
         localStorage.setItem('token', response.token);
+        this.router.navigate(['/home']);
       } else {
         console.log("Erro ao logar");
       }

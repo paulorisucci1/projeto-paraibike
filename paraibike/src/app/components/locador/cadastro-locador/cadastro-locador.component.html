@@ -15,10 +15,10 @@
                     <hr/>    
                     <form class="example-form" [formGroup]="formulario">
                         <div class="input-group input-group-sm mb-3 mt-4 input-color">
-                          <input type="email" class="form-control" placeholder="Nome" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="name">
+                          <input type="text" class="form-control" placeholder="Nome" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="name">
                         </div>
                         <div class="input-group input-group-sm mb-3 mt-4 input-color">
-                          <input type="email" class="form-control" placeholder="Nome de usuário" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="username">
+                          <input type="text" class="form-control" placeholder="Nome de usuário" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="username">
                         </div>
                         <div class="input-group input-group-sm mb-3 mt-4 input-color">
                             <input type="email" class="form-control" placeholder="Email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="email">
@@ -27,7 +27,7 @@
                             <input type="password" class="form-control" placeholder="Senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="password"> 
                         </div>
                         <div class="input-group input-group-sm mb-3 mt-4 input-color">
-                          <input type="email" class="form-control" placeholder="Confirmação de senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="password_confirmation">
+                          <input type="password" class="form-control" placeholder="Confirmação de senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="password_confirmation">
                       </div>
                         <button type="submit" class="login p-2" (click)="enviar()" [disabled]="!formulario.valid">Criar conta</button>
                     </form>

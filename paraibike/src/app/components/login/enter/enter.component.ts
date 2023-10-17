@@ -30,7 +30,7 @@ export class EnterComponent {
     this.authService.criarLogin(login).subscribe((response: any) => {
       if (response.token) {
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/listagem-bicicleta']);
+        this.router.navigate(['/listar-bicicletas']);
       } else {
         console.log("Erro ao logar");
       }

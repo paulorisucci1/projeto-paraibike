@@ -38,13 +38,13 @@ export class CadastroLocadorComponent {
     enviar(){
       const usuario: Usuario = this.formulario.value as Usuario;
 
-      if (this.formulario.get('password')?.value != this.formulario.get('password_confirmation')?.value) {
-        this.alertaService.alertaErro("Confirmação de senha inválida");
+      if (this.formulario.invalid) {
+        this.alertaService.alertaErro("Preencha todos os campos");
         return;
       }
 
-      if (this.formulario.invalid) {
-        this.alertaService.alertaErro("Preencha todos os campos");
+      if (this.formulario.get('password')?.value != this.formulario.get('password_confirmation')?.value) {
+        this.alertaService.alertaErro("Confirmação de senha inválida");
         return;
       }
 

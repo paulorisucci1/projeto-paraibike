@@ -3,12 +3,17 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { AlertaService } from 'src/app/service/alerta.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+
+  constructor(private router: Router, private alertaService: AlertaService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
@@ -22,7 +27,18 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error: any) => {
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+          // Redirecionar para a página de login
+          this.router.navigate(['/']);
+
+          // Exibir mensagem de erro
+          this.alertaService.alertaErro('Dados incorretos! Tente novamente.');
+        }
+        return throwError(error);
+      })
+    );;
   }
 
 }

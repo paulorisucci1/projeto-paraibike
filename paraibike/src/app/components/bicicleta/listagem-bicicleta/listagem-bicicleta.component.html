@@ -5,7 +5,7 @@
                 <div class="card">
                     <div id="header" class="card-header">
                         <h4 class="card-title ">Bicicletas
-                            <!-- <button mat-raised-button type="submit" [routerLink]="['/porteiros']" id="cadastrar" class="btn btn-sm pull-right">Cadastrar</button> -->
+                            <button mat-raised-button type="submit" [routerLink]="['/cadastro-bicicleta']" id="cadastrar" class="btn btn-sm float-right">Cadastrar</button>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -24,8 +24,9 @@
                                         <td> {{ bicicleta.marca }} </td>
                                         <td> {{ bicicleta.estado }} </td>
                                         <!-- <td> {{ bicicleta.endereco }} </td> -->
-                                        <td> <button mat-raised-button type="submit" id="editar" [routerLink]="['/alterar-bicicleta/',bicicleta.id]" class="btn btn-sm pull-right">Editar</button>
-                                            <!-- <button mat-raised-button type="submit"  id="deletar" (click)="deletar(bicicleta.id)" class="btn btn-sm pull-right">Deletar</button> -->
+                                        <td> 
+                                            <button mat-raised-button id="editar" [routerLink]="['/alterar-bicicleta/',bicicleta.id]" class="btn btn-sm pull-right">Editar</button>
+                                            <button mat-raised-button type="submit"  id="deletar" (click)="deletar(bicicleta.id!)" class="btn btn-sm pull-right">Deletar</button>
                                         </td>
                                     </tr>
                                 </tbody>  

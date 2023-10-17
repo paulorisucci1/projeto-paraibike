@@ -35,6 +35,7 @@ import { SharedModule } from './shared/shared.module';
     LocadorModule,
     HttpClientModule,
     CoreModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   providers: [],

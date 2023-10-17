@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Bicicleta } from '../interface/bicicleta';
 import { Observable, from } from "rxjs";
@@ -9,10 +9,13 @@ import { Observable, from } from "rxjs";
 export class BicicletaService {
 
   private readonly API = 'http://localhost:8080/bicicletas'; // url falsa
+  private readonly httpHeaders: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   criarBicicleta(bicicleta: Bicicleta) {
+    console.log(bicicleta);
     return this.http.post<Bicicleta>(`${this.API}`, bicicleta);
   }
 

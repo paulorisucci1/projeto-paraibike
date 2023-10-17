@@ -46,23 +46,24 @@ export class CadastroBicicletaComponent {
 
   enviar() {
     const bicicleta: Bicicleta = this.formulario.value as Bicicleta;
-
+    console.log(bicicleta);
     if (this.idBicicleta) {
       bicicleta.id = this.idBicicleta;
       this.bicicletaService.alterarBicicleta(bicicleta).subscribe(() => {
         console.log("Bicicleta atualizada");
-        this.alertaService.alertaSucesso("Bicicleta atualizada com sucesso"); 
+        this.alertaService.alertaSucesso("Bicicleta atualizada com sucesso");
+        this.router.navigate(['/listar-bicicletas']);
+      }, (error) => {
+        console.log(error);
+      });
+    } else {
+      this.bicicletaService.criarBicicleta(bicicleta).subscribe(() => {
+        this.alertaService.alertaSucesso("Bicicleta cadastrada com sucesso");
         this.router.navigate(['/listar-bicicletas']);
       }, (error) => {
         console.log(error);
       });
     }
-
-    this.bicicletaService.criarBicicleta(bicicleta).subscribe(() => {
-      this.alertaService.alertaSucesso("Bicicleta cadastrada com sucesso");
-    }, (error) => {
-      console.log(error);
-    });
   }
 
   cancelar() {

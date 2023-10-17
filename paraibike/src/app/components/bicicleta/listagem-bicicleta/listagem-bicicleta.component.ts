@@ -28,10 +28,12 @@ export class ListagemBicicletaComponent {
   listar(){
     this.bicicletaService.listarBicicletas().subscribe((bicicletas: Bicicleta[]) => {
       this.bicicletas = bicicletas;
+      console.log(this.bicicletas);
     });
   }  
 
   deletar(id: number){
+    console.log("id:" +id)
     if (id) {
       this.bicicletaService.excluirBicicleta(id).subscribe(() => {
         const index = this.bicicletas.findIndex( bicicleta => bicicleta.id === id); 

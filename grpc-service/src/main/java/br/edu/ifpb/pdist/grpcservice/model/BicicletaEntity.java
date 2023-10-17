@@ -2,13 +2,13 @@ package br.edu.ifpb.pdist.grpcservice.model;
 
 
 import br.com.paraibike.protofiles.Bicicleta;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+
 import lombok.Data;
 
 @Entity
+@Table(name="bicicletas")
 @Data
 public class BicicletaEntity {
 

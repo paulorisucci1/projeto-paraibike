@@ -3,11 +3,14 @@ package br.edu.ifpb.pdist.service;
 import br.com.paraibike.protofiles.Bicicleta;
 import br.com.paraibike.protofiles.BicicletaServiceGrpc;
 import br.com.paraibike.protofiles.NoContent;
+import br.edu.ifpb.pdist.mapper.BicicletaMapper;
+import br.edu.ifpb.pdist.model.BicicletaResponse;
 import com.google.protobuf.Descriptors;
 import com.google.protobuf.GeneratedMessageV3;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,40 +24,36 @@ public class BicicletaService {
     @GrpcClient("grpc-service")
     BicicletaServiceGrpc.BicicletaServiceStub asynchronousClient;
 
-
-    public Map<Descriptors.FieldDescriptor, Object> findById(int bicicletaId) {
+    public BicicletaResponse findById(int bicicletaId) {
         Bicicleta bicicleta = Bicicleta
                 .newBuilder()
                 .setId(bicicletaId)
                 .build();
-        Bicicleta bicicletaResponse = synchronousClient.findBicicleta(bicicleta);
-        return bicicletaResponse.getAllFields();
+        return BicicletaMapper.createBicicletaResponseFrom(synchronousClient.findBicicleta(bicicleta));
     }
 
-    public List<Map<Descriptors.FieldDescriptor, Object>> list() {
+    public List<BicicletaResponse> list() {
         return synchronousClient
                 .listBicicletas(NoContent.newBuilder().build())
                 .getBicicletasList()
                 .stream()
-                .map(GeneratedMessageV3::getAllFields)
+                .map(BicicletaMapper::createBicicletaResponseFrom)
                 .collect(Collectors.toList());
     }
 
-    public Map<Descriptors.FieldDescriptor, Object> create(Bicicleta bicicleta) {
-        Bicicleta bicicletaResponse = synchronousClient.createBicicleta(bicicleta);
-        return bicicletaResponse.getAllFields();
+    public BicicletaResponse create(Bicicleta bicicleta) {
+        return BicicletaMapper.createBicicletaResponseFrom(synchronousClient.createBicicleta(bicicleta));
     }
 
-    public Map<Descriptors.FieldDescriptor, Object> update(Bicicleta bicicleta) {
-        Bicicleta bicicletaResponse = synchronousClient.updateBicicleta(bicicleta);
-        return bicicletaResponse.getAllFields();
+    public BicicletaResponse update(Bicicleta bicicleta) {
+        return BicicletaMapper.createBicicletaResponseFrom(synchronousClient.updateBicicleta(bicicleta));
     }
 
-    public Map<Descriptors.FieldDescriptor, Object> delete(int bicicletaId) {
+    public void delete(int bicicletaId) {
         Bicicleta bicicleta = Bicicleta
                 .newBuilder()
                 .setId(bicicletaId)
                 .build();
-        return synchronousClient.deleteBicicleta(bicicleta).getAllFields();
+        synchronousClient.deleteBicicleta(bicicleta);
     }
 }

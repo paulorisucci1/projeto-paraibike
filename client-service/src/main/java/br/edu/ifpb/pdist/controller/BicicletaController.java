@@ -1,6 +1,7 @@
 package br.edu.ifpb.pdist.controller;
 
 import br.com.paraibike.protofiles.Bicicleta;
+import br.edu.ifpb.pdist.model.BicicletaResponse;
 import br.edu.ifpb.pdist.service.BicicletaService;
 import com.google.protobuf.Descriptors;
 import lombok.AllArgsConstructor;
@@ -14,23 +15,22 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(consumes = "application/json;charset=UTF-8", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BicicletaController {
 
     private BicicletaService bicicletaService;
 
     @GetMapping("/bicicletas/{bicicletaId}")
-    public ResponseEntity<Map<Descriptors.FieldDescriptor, Object>> findById(@PathVariable int bicicletaId) {
+    public ResponseEntity<BicicletaResponse> findById(@PathVariable int bicicletaId) {
         return ResponseEntity.ok(bicicletaService.findById(bicicletaId));
     }
 
     @GetMapping("/bicicletas")
-    public ResponseEntity<List<Map<Descriptors.FieldDescriptor, Object>>> list() {
+    public ResponseEntity<List<BicicletaResponse>> list() {
         return ResponseEntity.ok(bicicletaService.list());
     }
 
     @PostMapping("/bicicletas")
-    public ResponseEntity<Map<Descriptors.FieldDescriptor, Object>> create(@RequestBody Map<String, String> map) {
+    public ResponseEntity<BicicletaResponse> create(@RequestBody Map<String, String> map) {
         final var bicicleta = Bicicleta.newBuilder()
                 .setCodigo(map.get("codigo"))
                 .setMarca(map.get("marca"))
@@ -40,7 +40,7 @@ public class BicicletaController {
     }
 
     @PutMapping("/bicicletas/{bicicletaId}")
-    public ResponseEntity<Map<Descriptors.FieldDescriptor, Object>> update(@PathVariable int bicicletaId, @RequestBody Map<String, String> map) {
+    public ResponseEntity<BicicletaResponse> update(@PathVariable int bicicletaId, @RequestBody Map<String, String> map) {
         final var bicicleta = Bicicleta.newBuilder()
                 .setId(bicicletaId)
                 .setCodigo(map.get("codigo"))
@@ -51,7 +51,8 @@ public class BicicletaController {
     }
 
     @DeleteMapping("/bicicletas/{bicicletaId}")
-    public ResponseEntity<Map<Descriptors.FieldDescriptor, Object>> delete(@PathVariable int bicicletaId) {
-        return ResponseEntity.ok(bicicletaService.delete(bicicletaId));
+    public ResponseEntity<Void> delete(@PathVariable int bicicletaId) {
+        bicicletaService.delete(bicicletaId);
+        return ResponseEntity.noContent().build();
     }
 }

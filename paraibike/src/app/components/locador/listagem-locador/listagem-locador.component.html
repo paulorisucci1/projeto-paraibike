@@ -1,1 +1,21 @@
-<p>listagem-locador works!</p>
+
+<body>
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th class="center">Username</th>
+          <th class="center">Nome</th>
+          <th class="center">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.username }}</td>
+          <td>{{ usuario.name }}</td>
+          <td>{{ usuario.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>

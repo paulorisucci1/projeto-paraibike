@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastroBicicletaComponent } from './components/bicicleta/cadastro-bicicleta/cadastro-bicicleta.component';
 import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bicicleta/listagem-bicicleta.component';
+import { ListagemLocadorComponent } from './components/locador/listagem-locador/listagem-locador.component';
 
 const routes: Routes = [
 {
@@ -19,12 +20,15 @@ const routes: Routes = [
   },
   {
     path: 'cadastro-bicicleta', component: CadastroBicicletaComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'alterar-bicicleta/:id', component: CadastroBicicletaComponent, canActivate: [AuthGuard]
   },
   {
     path: 'listar-bicicletas', component: ListagemBicicletaComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'listar-usuarios', component: ListagemLocadorComponent
   }
 ];
 

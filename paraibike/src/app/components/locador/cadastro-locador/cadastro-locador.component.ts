@@ -13,7 +13,7 @@ import { AlertaService } from 'src/app/service/alerta.service';
 export class CadastroLocadorComponent {
 
     usuarios: Usuario[] | undefined;
-  
+
     idUsuario = 0;
 
     formulario = new FormGroup({
@@ -23,7 +23,7 @@ export class CadastroLocadorComponent {
       password: new FormControl('', Validators.required),
       password_confirmation: new FormControl('', Validators.required)
     })
-  
+
     constructor(
       private router: Router,
       private route: ActivatedRoute,

@@ -16,7 +16,7 @@ export class UsuarioService {
   }
 
   listarUsuarios(){
-    return this.http.get<Usuario>(`${this.API}`);
+    return this.http.get<Usuario[]>(`${this.API}`);
   }
 
   alterarUsuario(usuario: Usuario){

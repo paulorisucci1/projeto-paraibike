@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Bicicleta } from 'src/app/interface/bicicleta';
+import { AlertaService } from 'src/app/service/alerta.service';
 import { BicicletaService } from 'src/app/service/bicicleta.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class ListagemBicicletaComponent {
 
   constructor(
     private router: Router,
-    private bicicletaService: BicicletaService
+    private bicicletaService: BicicletaService,
+    private alertaService: AlertaService
   ){}
 
     ngOnInit(){
@@ -36,7 +38,7 @@ export class ListagemBicicletaComponent {
         if (index > -1) {
           this.bicicletas.splice(index, 1);
         }
-        console.log('deu certo');
+        this.alertaService.alertaSucesso("Bicicleta excluída com sucesso");
         this.listar();
       }, (error) => {
         console.log(error);

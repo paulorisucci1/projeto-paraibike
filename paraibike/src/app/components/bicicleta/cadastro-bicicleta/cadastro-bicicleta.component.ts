@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bicicleta } from 'src/app/interface/bicicleta';
+import { AlertaService } from 'src/app/service/alerta.service';
 import { BicicletaService } from 'src/app/service/bicicleta.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class CadastroBicicletaComponent {
   constructor(
     private bicicletaService: BicicletaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertaService: AlertaService
   ){}
 
   ngOnInit(): void {
@@ -49,6 +51,7 @@ export class CadastroBicicletaComponent {
       bicicleta.id = this.idBicicleta;
       this.bicicletaService.alterarBicicleta(bicicleta).subscribe(() => {
         console.log("Bicicleta atualizada");
+        this.alertaService.alertaSucesso("Bicicleta atualizada com sucesso"); 
         this.router.navigate(['/listar-bicicletas']);
       }, (error) => {
         console.log(error);
@@ -56,10 +59,14 @@ export class CadastroBicicletaComponent {
     }
 
     this.bicicletaService.criarBicicleta(bicicleta).subscribe(() => {
-      console.log("Bicicleta criada");
+      this.alertaService.alertaSucesso("Bicicleta cadastrada com sucesso");
     }, (error) => {
       console.log(error);
     });
   }
 
+  cancelar() {
+    this.router.navigate(['/']);
+    return;
+  }
 }

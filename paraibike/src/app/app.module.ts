@@ -14,6 +14,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CoreModule } from './core/core.module';
 import { CadastroBicicletaComponent } from './components/bicicleta/cadastro-bicicleta/cadastro-bicicleta.component';
 import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bicicleta/listagem-bicicleta.component';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bici
     HomeComponent,
     CadastroBicicletaComponent,
     ListagemBicicletaComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bici
     BrowserAnimationsModule,
     LocadorModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

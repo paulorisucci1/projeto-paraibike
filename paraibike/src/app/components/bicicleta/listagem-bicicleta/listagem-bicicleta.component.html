@@ -1,1 +1,41 @@
-<p>listagem-bicicleta works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div id="header" class="card-header">
+                        <h4 class="card-title ">Bicicletas
+                            <!-- <button mat-raised-button type="submit" [routerLink]="['/porteiros']" id="cadastrar" class="btn btn-sm pull-right">Cadastrar</button> -->
+                        </h4>
+                    </div>
+                    <div class="card-body">
+              
+                       <div class="table-responsive">
+                            <table  class="table" >
+                                <thead class=" text-primary">
+                                    <th> Código </th>
+                                    <th> Marca </th>
+                                    <th> Estado </th>
+                                    <th> Ações </th>
+                                 </thead>
+                                <tbody>
+                                    <tr *ngFor="let bicicleta of bicicletas" >
+                                        <td> {{ bicicleta.codigo }} </td>
+                                        <td> {{ bicicleta.marca }} </td>
+                                        <td> {{ bicicleta.estado }} </td>
+                                        <!-- <td> {{ bicicleta.endereco }} </td> -->
+                                        <td> <button mat-raised-button type="submit" id="editar" [routerLink]="['/alterar-bicicleta/',bicicleta.id]" class="btn btn-sm pull-right">Editar</button>
+                                            <!-- <button mat-raised-button type="submit"  id="deletar" (click)="deletar(bicicleta.id)" class="btn btn-sm pull-right">Deletar</button> -->
+                                        </td>
+                                    </tr>
+                                </tbody>  
+                            </table>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            
+    </div>
+  </div> 
+  
+  

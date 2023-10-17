@@ -31,16 +31,26 @@ export class CadastroLocadorComponent {
       private alertaService: AlertaService
     ) {}
 
+    get name() {
+      return this.formulario.get('name');
+    }
+
     enviar(){
       const usuario: Usuario = this.formulario.value as Usuario;
 
       if (this.formulario.get('password')?.value != this.formulario.get('password_confirmation')?.value) {
-        console.log("Senhas não conferem");
+        this.alertaService.alertaErro("Confirmação de senha inválida");
+        return;
+      }
+
+      if (this.formulario.invalid) {
+        this.alertaService.alertaErro("Preencha todos os campos");
         return;
       }
 
       this.usuarioService.criarUsuario(usuario).subscribe(() => {
-        this.alertaService.alertaSucesso("Usuario criado com sucesso");
+        this.alertaService.alertaSucesso("Conta criada com sucesso");
+        this.router.navigate(['/']);
       }, (error) => {
         console.log(error);
       });

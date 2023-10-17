@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Bicicleta } from '../interface/bicicleta';
+import { Observable, from } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class BicicletaService {
     return this.http.put(`${this.API}/${bicicleta.id}`, bicicleta);
   }
 
-  excluirBicicleta(id: number | undefined){
+  excluirBicicleta(id: number | undefined): Observable<object>{
     return this.http.delete(`${this.API}/${id}`);
   }
 

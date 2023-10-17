@@ -4,7 +4,7 @@ package br.edu.ifpb.pdist.model;
 import lombok.Data;
 
 @Data
-public class BicicletaResponse {
+public class BicicletaDTO {
 
     private Integer id;
 

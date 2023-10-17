@@ -1,9 +1,8 @@
 package br.edu.ifpb.pdist.controller;
 
 import br.com.paraibike.protofiles.Bicicleta;
-import br.edu.ifpb.pdist.model.BicicletaResponse;
+import br.edu.ifpb.pdist.model.BicicletaDTO;
 import br.edu.ifpb.pdist.service.BicicletaService;
-import com.google.protobuf.Descriptors;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,37 +14,38 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class BicicletaController {
 
     private BicicletaService bicicletaService;
 
     @GetMapping("/bicicletas/{bicicletaId}")
-    public ResponseEntity<BicicletaResponse> findById(@PathVariable int bicicletaId) {
+    public ResponseEntity<BicicletaDTO> findById(@PathVariable int bicicletaId) {
         return ResponseEntity.ok(bicicletaService.findById(bicicletaId));
     }
 
     @GetMapping("/bicicletas")
-    public ResponseEntity<List<BicicletaResponse>> list() {
+    public ResponseEntity<List<BicicletaDTO>> list() {
         return ResponseEntity.ok(bicicletaService.list());
     }
 
     @PostMapping("/bicicletas")
-    public ResponseEntity<BicicletaResponse> create(@RequestBody Map<String, String> map) {
+    public ResponseEntity<BicicletaDTO> create(@RequestBody BicicletaDTO bicicletaDTO) {
         final var bicicleta = Bicicleta.newBuilder()
-                .setCodigo(map.get("codigo"))
-                .setMarca(map.get("marca"))
-                .setEstado(map.get("estado"))
+                .setCodigo(bicicletaDTO.getCodigo())
+                .setMarca(bicicletaDTO.getMarca())
+                .setEstado(bicicletaDTO.getEstado())
                 .build();
         return ResponseEntity.ok(bicicletaService.create(bicicleta));
     }
 
     @PutMapping("/bicicletas/{bicicletaId}")
-    public ResponseEntity<BicicletaResponse> update(@PathVariable int bicicletaId, @RequestBody Map<String, String> map) {
+    public ResponseEntity<BicicletaDTO> update(@PathVariable int bicicletaId, @RequestBody BicicletaDTO bicicletaDTO) {
         final var bicicleta = Bicicleta.newBuilder()
                 .setId(bicicletaId)
-                .setCodigo(map.get("codigo"))
-                .setMarca(map.get("marca"))
-                .setEstado(map.get("estado"))
+                .setCodigo(bicicletaDTO.getCodigo())
+                .setMarca(bicicletaDTO.getMarca())
+                .setEstado(bicicletaDTO.getEstado())
                 .build();
         return ResponseEntity.ok(bicicletaService.update(bicicleta));
     }

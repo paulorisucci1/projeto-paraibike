@@ -4,15 +4,11 @@ import br.com.paraibike.protofiles.Bicicleta;
 import br.com.paraibike.protofiles.BicicletaServiceGrpc;
 import br.com.paraibike.protofiles.NoContent;
 import br.edu.ifpb.pdist.mapper.BicicletaMapper;
-import br.edu.ifpb.pdist.model.BicicletaResponse;
-import com.google.protobuf.Descriptors;
-import com.google.protobuf.GeneratedMessageV3;
+import br.edu.ifpb.pdist.model.BicicletaDTO;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,29 +20,29 @@ public class BicicletaService {
     @GrpcClient("grpc-service")
     BicicletaServiceGrpc.BicicletaServiceStub asynchronousClient;
 
-    public BicicletaResponse findById(int bicicletaId) {
+    public BicicletaDTO findById(int bicicletaId) {
         Bicicleta bicicleta = Bicicleta
                 .newBuilder()
                 .setId(bicicletaId)
                 .build();
-        return BicicletaMapper.createBicicletaResponseFrom(synchronousClient.findBicicleta(bicicleta));
+        return BicicletaMapper.createBicicletaDTOFrom(synchronousClient.findBicicleta(bicicleta));
     }
 
-    public List<BicicletaResponse> list() {
+    public List<BicicletaDTO> list() {
         return synchronousClient
                 .listBicicletas(NoContent.newBuilder().build())
                 .getBicicletasList()
                 .stream()
-                .map(BicicletaMapper::createBicicletaResponseFrom)
+                .map(BicicletaMapper::createBicicletaDTOFrom)
                 .collect(Collectors.toList());
     }
 
-    public BicicletaResponse create(Bicicleta bicicleta) {
-        return BicicletaMapper.createBicicletaResponseFrom(synchronousClient.createBicicleta(bicicleta));
+    public BicicletaDTO create(Bicicleta bicicleta) {
+        return BicicletaMapper.createBicicletaDTOFrom(synchronousClient.createBicicleta(bicicleta));
     }
 
-    public BicicletaResponse update(Bicicleta bicicleta) {
-        return BicicletaMapper.createBicicletaResponseFrom(synchronousClient.updateBicicleta(bicicleta));
+    public BicicletaDTO update(Bicicleta bicicleta) {
+        return BicicletaMapper.createBicicletaDTOFrom(synchronousClient.updateBicicleta(bicicleta));
     }
 
     public void delete(int bicicletaId) {

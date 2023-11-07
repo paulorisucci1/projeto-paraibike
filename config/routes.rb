@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :users, param: :_username
+  resources :users, param: :_username, except: :create
+  get '/current_user', to: 'users#authenticated_user'
   get '/*a', to: 'application#not_found'
 end

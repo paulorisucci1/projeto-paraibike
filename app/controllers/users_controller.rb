@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :find_user
+  # GET /current_user
+  def authenticated_user
+    render json: UserSerializer.new(current_user).serializable_hash[:data][:attributes], status: :ok
+  end
 
   # GET /users
   def index
@@ -9,19 +13,19 @@ class UsersController < ApplicationController
 
   # GET /users/{username}
   def show
-    render json: @user, status: :ok
+    render json: UserSerializer.new(@user).serializable_hash[:data][:attributes], status: :ok
   end
 
-  # POST /users
-  def create
-    @user = User.new user_params
-    if @user.save
-      render json: @user, status: :created
-    else
-      render json: { errors: @user.errors.full_messages },
-             status: :unprocessable_entity
-    end
-  end
+  # # POST /users
+  # def create
+  #   @user = User.new user_params
+  #   if @user.save
+  #     render json: @user, status: :created
+  #   else
+  #     render json: { errors: @user.errors.full_messages },
+  #            status: :unprocessable_entity
+  #   end
+  # end
 
   # PUT /users/{username}
   def update

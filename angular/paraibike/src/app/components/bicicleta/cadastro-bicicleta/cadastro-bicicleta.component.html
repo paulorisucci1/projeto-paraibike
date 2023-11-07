@@ -1,0 +1,31 @@
+
+<body>
+    <!-- <app-sidenav></app-sidenav> -->
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>Cadastrar Bicicleta</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form class="example-form" [formGroup]="formulario">
+                        <div class="input-group input-group-sm mb-3 mt-4 input-color">
+                          <input type="text" class="form-control" placeholder="Código" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                          formControlName="codigo" required>
+                        </div>
+                        <div class="input-group input-group-sm mb-3 mt-4 input-color">
+                          <input type="text" class="form-control" placeholder="Marca" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="marca" required>
+                        </div>
+                        <div class="input-group input-group-sm mb-3 mt-4 input-color">
+                            <input type="text" class="form-control" placeholder="Estado" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="estado" required>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button class="cancelar p-2" (click)="cancelar()">Cancelar</button>
+                            <button class="login p-2" (click)="enviar()">Enviar</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+              </mat-card>
+        </div>
+    </div>
+</body>

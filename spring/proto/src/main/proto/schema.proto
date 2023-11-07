@@ -1,0 +1,37 @@
+//Bicicleta {
+//    id?: number;
+//    codigo: 'string';
+//    marca: 'string';
+//    estado: 'string';
+//}
+
+syntax = "proto3";
+
+package br.com.paraibike.protofiles;
+
+option java_multiple_files = true;
+
+message Bicicleta {
+  int32 id = 1;
+  string codigo = 2;
+  string marca = 3;
+  string estado = 4;
+}
+
+message Bicicletas {
+  repeated Bicicleta bicicletas = 1;
+}
+
+message NoContent {}
+
+message Feedback {
+  string message = 1;
+}
+
+service BicicletaService {
+  rpc findBicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc listBicicletas(NoContent) returns (Bicicletas) {}
+  rpc createBicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc updateBicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc deleteBicicleta(Bicicleta) returns (Feedback) {}
+}

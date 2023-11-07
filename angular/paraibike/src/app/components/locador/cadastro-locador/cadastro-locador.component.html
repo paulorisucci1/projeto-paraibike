@@ -1,0 +1,40 @@
+  <body>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>Cadastro</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>      
+                    <div class="d-flex align-items-center justify-content-center mt-4 mb-5">
+                        <!-- <ng-md-icon icon="github-circle" size="20"></ng-md-icon> -->
+                        <i class="fas fa-user"></i>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                    </div>  
+                    <hr/>    
+                    <form class="example-form" [formGroup]="formulario">
+                        <div class="input-group input-group-sm mb-3 mt-4 input-color">
+                          <input type="text" class="form-control" placeholder="Nome" id="name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" 
+                          formControlName="name" required>
+                        </div>
+                        <div class="input-group input-group-sm mb-3 mt-4 input-color">
+                          <input type="text" class="form-control" placeholder="Nome de usuário" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="username">
+                        </div>
+                        <div class="input-group input-group-sm mb-3 mt-4 input-color">
+                            <input type="email" class="form-control" placeholder="Email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="email">
+                        </div>
+                        <div class="input-group input-group-sm mb-3 input-color">
+                            <input type="password" class="form-control" placeholder="Senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="password"> 
+                        </div>
+                        <div class="input-group input-group-sm mb-3 mt-4 input-color">
+                          <input type="password" class="form-control" placeholder="Confirmação de senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="password_confirmation">
+                      </div>
+                        <!-- <button type="submit" class="login p-2" (click)="enviar()" [disabled]="!formulario.valid">Criar conta</button> -->
+                        <button class="login p-2" (click)="enviar()">Criar conta</button>
+                    </form>
+                </mat-card-content>
+              </mat-card>
+        </div>
+    </div>
+</body>

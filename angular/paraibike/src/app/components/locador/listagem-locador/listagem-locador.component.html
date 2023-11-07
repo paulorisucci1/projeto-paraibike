@@ -1,0 +1,41 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div id="header" class="card-header">
+                      <h4 class="card-title ">Usuários
+                          <button mat-raised-button type="submit" [routerLink]="['/cadastro']" id="cadastrar" class="btn btn-sm float-right">Cadastrar</button>
+                      </h4>
+                  </div>
+                  <div class="card-body">
+
+                     <div class="table-responsive">
+                          <table  class="table" >
+                              <thead class=" text-primary">
+                                  <th> Nome </th>
+                                  <th> Nome de Usuário </th>
+                                  <th> E-mail </th>
+                                  <th> Ações </th>
+                               </thead>
+                              <tbody>
+                                  <tr *ngFor="let usuario of usuarios" >
+                                      <td> {{ usuario.name }} </td>
+                                      <td> {{ usuario.username }} </td>
+                                      <td> {{usuario.email }} </td>
+                                      <!-- <td> {{ bicicleta.endereco }} </td> -->
+                                      <td>
+                                          <button mat-raised-button id="editar" [routerLink]="['/alterar-usuario/',usuario.id]" class="btn btn-sm pull-right">Editar</button>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+  </div>
+</div>
+
+

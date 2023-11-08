@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, :find_user
-  # GET /current_user
-  def authenticated_user
-    render json: UserSerializer.new(current_user).serializable_hash[:data][:attributes], status: :ok
-  end
+  before_action :authenticate_user!
+  before_action :find_user, except: %i[index]
 
   # GET /users
   def index

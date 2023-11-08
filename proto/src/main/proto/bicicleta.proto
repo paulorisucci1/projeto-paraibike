@@ -18,8 +18,31 @@ message Bicicleta {
   string estado = 4;
 }
 
+message Usuario {
+  int32 id = 1;
+  string nome = 2;
+  string cpf = 3;
+  string email = 4;
+  string senha = 5;
+  string endereco = 6;
+  string telefone = 7;
+}
+
 message Bicicletas {
   repeated Bicicleta bicicletas = 1;
+}
+
+message Aluguel {
+  int32 id = 1;
+  string valor = 2;
+  string data = 3;
+  string status = 4;
+  Bicicleta bicicleta = 5;
+  Usuario usuario = 6;
+}
+
+message Alugueis {
+  repeated Aluguel aluguel = 1;
 }
 
 message NoContent {}
@@ -34,4 +57,12 @@ service BicicletaService {
   rpc createBicicleta(Bicicleta) returns (Bicicleta) {}
   rpc updateBicicleta(Bicicleta) returns (Bicicleta) {}
   rpc deleteBicicleta(Bicicleta) returns (Feedback) {}
+}
+
+service AluguelService {
+  rpc findAluguel(Aluguel) returns (Aluguel) {}
+  rpc listAlugueis(NoContent) returns (Alugueis) {}
+  rpc createAluguel(Aluguel) returns (Aluguel) {}
+  rpc updateAluguel(Aluguel) returns (Aluguel) {}
+  rpc deleteAluguel(Aluguel) returns (Feedback) {}
 }

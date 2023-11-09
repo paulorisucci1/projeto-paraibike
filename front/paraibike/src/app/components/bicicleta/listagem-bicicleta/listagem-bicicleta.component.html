@@ -1,0 +1,46 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div id="header" class="card-header">
+						<h4 class="card-title ">Bicicletas
+							<button [routerLink]="['/cadastro-bicicleta']" id="cadastrar"
+								class="btn btn-sm btn-primary float-right">Cadastrar</button>
+						</h4>
+					</div>
+					<div class="card-body">
+
+						<div class="table-responsive">
+							<table class="table">
+								<thead class="text-center">
+									<th>Código</th>
+									<th>Marca</th>
+									<th>Estado</th>
+									<th>Valor</th>
+									<th>Ações</th>
+								</thead>
+								<tbody class="text-center">
+									<tr *ngFor="let bicicleta of bicicletas">
+										<td>{{ bicicleta.codigo }}</td>
+										<td>{{ bicicleta.marca }}</td>
+										<td>{{ bicicleta.estado }}</td>
+										<td>{{ bicicleta.valor | currency: 'R$ ' }}</td>
+										<td class="d-flex justify-content-center">
+											<button [routerLink]="['/alterar-bicicleta/', bicicleta.id]"
+												class="btn btn-sm m-1 btn-secondary pull-right">Editar</button>
+											<button (click)="deletar(bicicleta.id!)"
+												class="btn btn-sm m-1 btn-danger pull-right">Deletar</button>
+											<button [routerLink]="['/alugar-bicicleta/', bicicleta.id]"
+												class="btn btn-sm m-1 btn-primary pull-right">Alugar</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>

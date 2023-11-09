@@ -1,0 +1,38 @@
+<body>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="example-card">
+        <div>
+          <div class="d-flex align-items-center justify-content-center mt-4 mb-2">
+            <span class="mr-2">Cadastro</span><i class="fa fa-user"></i>
+          </div>
+          <hr />
+          <form class="example-form" [formGroup]="formulario">
+            <div class="input-group input-group-sm mb-3 mt-4 input-color">
+              <input type="text" class="form-control" placeholder="Nome" id="name" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" formControlName="name" required>
+            </div>
+            <div class="input-group input-group-sm mb-3 mt-4 input-color">
+              <input type="text" class="form-control" placeholder="Nome de usuário" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" formControlName="username">
+            </div>
+            <div class="input-group input-group-sm mb-3 mt-4 input-color">
+              <input type="email" class="form-control" placeholder="Email" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" formControlName="email">
+            </div>
+            <div class="input-group input-group-sm mb-3 input-color">
+              <input type="password" class="form-control" placeholder="Senha" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" formControlName="password">
+            </div>
+            <div class="input-group input-group-sm mb-3 mt-4 input-color">
+              <input type="password" class="form-control" placeholder="Confirmação de senha"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                formControlName="password_confirmation">
+            </div>
+            <button class="btn btn-block btn-primary mb-3" (click)="enviar()">Criar conta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

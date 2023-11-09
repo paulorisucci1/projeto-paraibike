@@ -3,6 +3,7 @@ package br.edu.ifpb.pdist.service;
 import br.com.paraibike.protofiles.Bicicleta;
 import br.com.paraibike.protofiles.BicicletaServiceGrpc;
 import br.com.paraibike.protofiles.NoContent;
+import br.com.paraibike.protofiles.Usuario;
 import br.edu.ifpb.pdist.mapper.BicicletaMapper;
 import br.edu.ifpb.pdist.model.BicicletaDTO;
 import net.devh.boot.grpc.client.inject.GrpcClient;
@@ -51,5 +52,14 @@ public class BicicletaService {
                 .setId(bicicletaId)
                 .build();
         synchronousClient.deleteBicicleta(bicicleta);
+    }
+
+    public List<BicicletaDTO> listByLocador(Integer idLocador) {
+        final var locador = Usuario.newBuilder().setId(idLocador).build();
+        return synchronousClient.listBicicletasByLocador(locador)
+                .getBicicletasList()
+                .stream()
+                .map(BicicletaMapper::createBicicletaDTOFrom)
+                .collect(Collectors.toList());
     }
 }

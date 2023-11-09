@@ -16,16 +16,11 @@ message Bicicleta {
   string codigo = 2;
   string marca = 3;
   string estado = 4;
+  int32 usuarioId = 5;
 }
 
 message Usuario {
   int32 id = 1;
-  string nome = 2;
-  string cpf = 3;
-  string email = 4;
-  string senha = 5;
-  string endereco = 6;
-  string telefone = 7;
 }
 
 message Bicicletas {
@@ -37,8 +32,8 @@ message Aluguel {
   string valor = 2;
   string data = 3;
   string status = 4;
-  Bicicleta bicicleta = 5;
-  Usuario usuario = 6;
+  int32 usuarioId = 5;
+  Bicicleta bicicleta = 6;
 }
 
 message Alugueis {
@@ -54,6 +49,7 @@ message Feedback {
 service BicicletaService {
   rpc findBicicleta(Bicicleta) returns (Bicicleta) {}
   rpc listBicicletas(NoContent) returns (Bicicletas) {}
+  rpc listBicicletasByLocador(Usuario) returns (Bicicletas) {}
   rpc createBicicleta(Bicicleta) returns (Bicicleta) {}
   rpc updateBicicleta(Bicicleta) returns (Bicicleta) {}
   rpc deleteBicicleta(Bicicleta) returns (Feedback) {}

@@ -13,7 +13,7 @@ public class AluguelDTO {
 
     private String status;
 
-    private BicicletaDTO bicicletaDTO;
+    private Integer usuarioId;
 
-    private UsuarioDTO usuarioDTO;
+    private BicicletaDTO bicicletaDTO;
 }

@@ -21,4 +21,12 @@ public class BicicletaEntity {
     private String marca;
 
     private String estado;
+
+    private Integer usuarioId;
+
+    public void update(BicicletaEntity updatedBicicleta) {
+        setCodigo(updatedBicicleta.getCodigo());
+        setMarca(updatedBicicleta.getMarca());
+        setEstado(updatedBicicleta.getEstado());
+    }
 }

@@ -34,7 +34,7 @@ public class AluguelController {
     @PostMapping("/alugueis")
     public ResponseEntity<AluguelDTO> create(@RequestBody AluguelDTO aluguelDTO) {
         final var aluguel = Aluguel.newBuilder()
-                .setUsuario(Usuario.newBuilder().setId(aluguelDTO.getUsuarioDTO().getId()).build())
+                .setUsuarioId(aluguelDTO.getUsuarioId())
                 .setBicicleta(Bicicleta.newBuilder().setId(aluguelDTO.getBicicletaDTO().getId()).build())
                 .setData(String.valueOf(aluguelDTO.getData()))
                 .setValor(String.valueOf(aluguelDTO.getValor()))

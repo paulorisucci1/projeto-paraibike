@@ -13,4 +13,6 @@ public class BicicletaDTO {
     private String marca;
 
     private String estado;
+
+    private Integer usuarioId;
 }

@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -29,12 +28,18 @@ public class BicicletaController {
         return ResponseEntity.ok(bicicletaService.list());
     }
 
+    @GetMapping("/bicicletasByLocador/{idLocador}")
+    public ResponseEntity<List<BicicletaDTO>> listByLocador(@PathVariable Integer idLocador) {
+        return ResponseEntity.ok(bicicletaService.listByLocador(idLocador));
+    }
+
     @PostMapping("/bicicletas")
     public ResponseEntity<BicicletaDTO> create(@RequestBody BicicletaDTO bicicletaDTO) {
         final var bicicleta = Bicicleta.newBuilder()
                 .setCodigo(bicicletaDTO.getCodigo())
                 .setMarca(bicicletaDTO.getMarca())
                 .setEstado(bicicletaDTO.getEstado())
+                .setUsuarioId(bicicletaDTO.getUsuarioId())
                 .build();
         return ResponseEntity.ok(bicicletaService.create(bicicleta));
     }

@@ -12,6 +12,7 @@ public class BicicletaMapper {
         bicicletaEntity.setCodigo(bicicleta.getCodigo());
         bicicletaEntity.setMarca(bicicleta.getMarca());
         bicicletaEntity.setEstado(bicicleta.getEstado());
+        bicicletaEntity.setUsuarioId(bicicleta.getUsuarioId());
 
         return bicicletaEntity;
     }
@@ -24,6 +25,7 @@ public class BicicletaMapper {
                 .setCodigo(bicicletaEntity.getCodigo())
                 .setMarca(bicicletaEntity.getMarca())
                 .setEstado(bicicletaEntity.getEstado())
+                .setUsuarioId(bicicletaEntity.getUsuarioId())
                 .build();
     }
 }

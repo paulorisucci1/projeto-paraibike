@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Table(name = "alugueis")
 public class AluguelEntity {
 
     @Id
@@ -18,8 +19,7 @@ public class AluguelEntity {
     @OneToOne
     private BicicletaEntity bicicleta;
 
-    @OneToOne
-    private UsuarioEntity usuario;
+    private Integer usuarioId;
 
     private BigDecimal valor;
 

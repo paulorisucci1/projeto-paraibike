@@ -3,8 +3,10 @@ package br.edu.ifpb.pdist.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class BicicletaDTO {
+public class BicicletaDTO implements Serializable {
 
     private Integer id;
 

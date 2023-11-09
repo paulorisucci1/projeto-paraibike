@@ -1,9 +1,0 @@
-grpc:
-  client:
-    grpc-service:
-      address: static://localhost:9000
-      negotiationType: plaintext
-
-allowed:
-  origin:
-    http://localhost:4200

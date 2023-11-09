@@ -7,10 +7,12 @@ import javax.persistence.*;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name="bicicletas")
 @Data
-public class BicicletaEntity {
+public class BicicletaEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

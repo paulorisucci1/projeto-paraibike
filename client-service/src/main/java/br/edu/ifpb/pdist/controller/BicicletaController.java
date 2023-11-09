@@ -4,6 +4,9 @@ import br.com.paraibike.protofiles.Bicicleta;
 import br.edu.ifpb.pdist.model.BicicletaDTO;
 import br.edu.ifpb.pdist.service.BicicletaService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,16 +22,19 @@ public class BicicletaController {
     private BicicletaService bicicletaService;
 
     @GetMapping("/bicicletas/{bicicletaId}")
-    public ResponseEntity<BicicletaDTO> findById(@PathVariable int bicicletaId) {
-        return ResponseEntity.ok(bicicletaService.findById(bicicletaId));
+    @Cacheable(value = "bicicletas", key = "#{bicicletaId}")
+    public BicicletaDTO findById(@PathVariable int bicicletaId) {
+        return bicicletaService.findById(bicicletaId);
     }
 
     @GetMapping("/bicicletas")
-    public ResponseEntity<List<BicicletaDTO>> list() {
-        return ResponseEntity.ok(bicicletaService.list());
+    @Cacheable(value = "bicicletas")
+    public List<BicicletaDTO> list() {
+        return bicicletaService.list();
     }
 
     @GetMapping("/bicicletasByLocador/{idLocador}")
+    @Cacheable(value = "bicicletas")
     public ResponseEntity<List<BicicletaDTO>> listByLocador(@PathVariable Integer idLocador) {
         return ResponseEntity.ok(bicicletaService.listByLocador(idLocador));
     }
@@ -45,6 +51,7 @@ public class BicicletaController {
     }
 
     @PutMapping("/bicicletas/{bicicletaId}")
+    @CachePut(value = "bicicletas", key = "#{bicicletaId}")
     public ResponseEntity<BicicletaDTO> update(@PathVariable int bicicletaId, @RequestBody BicicletaDTO bicicletaDTO) {
         final var bicicleta = Bicicleta.newBuilder()
                 .setId(bicicletaId)
@@ -56,6 +63,7 @@ public class BicicletaController {
     }
 
     @DeleteMapping("/bicicletas/{bicicletaId}")
+    @CacheEvict(value = "bicicletas", key = "#{bicicletaId}")
     public ResponseEntity<Void> delete(@PathVariable int bicicletaId) {
         bicicletaService.delete(bicicletaId);
         return ResponseEntity.noContent().build();

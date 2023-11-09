@@ -18,17 +18,28 @@ public class BicicletaService extends BicicletaServiceGrpc.BicicletaServiceImplB
     public void findBicicleta(Bicicleta request, StreamObserver<Bicicleta> responseObserver) {
         final var entity = bicicletaRepository.findById(request.getId());
 
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            System.out.println("...");
+        }
+
         if(entity.isPresent()) {
             final var response = BicicletaMapper.createBicicletaFrom(entity.get());
             responseObserver.onNext(response);
         }
-
         responseObserver.onCompleted();
     }
 
     @Override
     public void listBicicletas(NoContent request, StreamObserver<Bicicletas> responseObserver) {
 
+
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            System.out.println("...");
+        }
         final var entities = bicicletaRepository.findAll();
         final var responses = Bicicletas.newBuilder();
 

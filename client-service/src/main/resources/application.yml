@@ -7,3 +7,4 @@ grpc:
 allowed:
   origin:
     http://localhost:4200
+  

@@ -7,7 +7,8 @@
 
 syntax = "proto3";
 
-package br.com.paraibike.protofiles;
+option java_package = "br.com.paraibike.protofiles";
+package paraibike;
 
 option java_multiple_files = true;
 

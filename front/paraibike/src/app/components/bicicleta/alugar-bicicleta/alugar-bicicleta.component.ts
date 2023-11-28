@@ -15,8 +15,10 @@ import { BicicletaService } from 'src/app/service/bicicleta.service';
 export class AlugarBicicletaComponent {
 
   public bicicleta!: Bicicleta;
+  public aluguel!: Aluguel
   public formulario = new FormGroup({
-    data: new FormControl("", Validators.required)
+    data: new FormControl("", Validators.required),
+    quantidadeHoras: new FormControl("", Validators.required)
   });
 
   get data() {
@@ -30,14 +32,6 @@ export class AlugarBicicletaComponent {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    // TODO: REMOVER MOCK
-    this.bicicleta = {
-      id: 1,
-      codigo: 'COD.9298388309182',
-      marca: 'MelhoresBikesIradas LTDA.',
-      valor: 43,
-      estado: 'Na Caixa'
-    }
     this.bicicletaService.buscarBicicletaPorId(Number(this.route.snapshot.paramMap.get('id'))).subscribe(bicicleta => {
       this.bicicleta = bicicleta;
     })
@@ -45,14 +39,17 @@ export class AlugarBicicletaComponent {
 
   alugar() {
     if (this.formulario.invalid) {
-      return this.alertaService.alertaErro("Informe uma data!");
+      return this.alertaService.alertaErro("Preencha todos os campos!");
     }
     const body = new Aluguel();
     body.data = this.data as any;
-    body.valor = this.bicicleta.valor;
     body.bicicleta = this.bicicleta;
+    body.quantidadeHoras = this.formulario.get('quantidadeHoras')!.value!;
+    body.usuarioId = 1;
+    body.status = "Aprovado";
     this.aluguelService.criarAluguel(body).subscribe(() => {
       this.alertaService.alertaSucesso("Bike irada alugada com sucesso!");
+      this.router.navigate(['/listar-bicicletas']);
     }, (error) => {
       console.log(error);
     });

@@ -3,9 +3,10 @@ import { Usuario } from "./usuario";
 
 export class Aluguel {
   id!: number;
-  valor!: number;
+  valor?: string;
+  quantidadeHoras!: string;
   data!: string | undefined;
   status!: string;
   bicicleta!: Bicicleta;
-  usuarioDTO?: Usuario;
+  usuarioId?: number;
 }

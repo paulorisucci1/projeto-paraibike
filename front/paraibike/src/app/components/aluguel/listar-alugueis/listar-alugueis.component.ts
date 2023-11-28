@@ -25,15 +25,6 @@ export class ListarAlugueisComponent {
   }
 
   listar(){
-    this.alugueis = [
-      {
-        id: 123,
-        valor: 20,
-        data: "10/10/2023",
-        status: 'status mockado',
-        bicicleta: new Bicicleta(),
-      }
-    ]
     this.aluguelService.listarAlugueis().subscribe((alugueis: Aluguel[]) => {
       this.alugueis = alugueis;
     });

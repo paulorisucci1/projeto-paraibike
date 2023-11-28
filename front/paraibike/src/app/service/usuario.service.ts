@@ -8,20 +8,20 @@ import { environment } from 'src/environments/environment';
 })
 export class UsuarioService {
 
-  private readonly API = `${environment.api_auth_url}/users`;
+  private readonly API = `${environment.api_auth_url}`;
 
   constructor(private http: HttpClient) { }
 
   criarUsuario(usuario: Usuario) {
-    return this.http.post<Usuario>(`${this.API}`, usuario);
+    return this.http.post<Usuario>(`${this.API}/signup`, usuario);
   }
 
   listarUsuarios(){
-    return this.http.get<Usuario>(`${this.API}`);
+    return this.http.get<Usuario>(`${this.API}/users`);
   }
 
   alterarUsuario(usuario: Usuario){
-    return this.http.put(`${this.API}/${usuario.username}`, usuario);
+    return this.http.put(`${this.API}/${usuario.username}/users`, usuario);
   }
 
 }

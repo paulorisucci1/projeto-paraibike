@@ -25,7 +25,7 @@
 										<td>{{ bicicleta.codigo }}</td>
 										<td>{{ bicicleta.marca }}</td>
 										<td>{{ bicicleta.estado }}</td>
-										<td>{{ bicicleta.valor | currency: 'R$ ' }}</td>
+										<td>{{ bicicleta.valorPorHora | currency: 'R$ ' }}</td>
 										<td class="d-flex justify-content-center">
 											<button [routerLink]="['/alterar-bicicleta/', bicicleta.id]"
 												class="btn btn-sm m-1 btn-secondary pull-right">Editar</button>

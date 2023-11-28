@@ -13,6 +13,8 @@ export class AuthService {
 
   private readonly API = `${environment.api_auth_url}/auth/login`;
 
+  public readonly userId = 1;
+
   estaLogado$ = this.logadoEm.asObservable();
 
   constructor(private router: Router,

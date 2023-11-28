@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bicicleta } from 'src/app/interface/bicicleta';
 import { AlertaService } from 'src/app/service/alerta.service';
 import { BicicletaService } from 'src/app/service/bicicleta.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-cadastro-bicicleta',
@@ -19,7 +20,8 @@ export class CadastroBicicletaComponent {
   formulario = new FormGroup({
     codigo: new FormControl('', Validators.required),
     marca: new FormControl('', Validators.required),
-    estado: new FormControl('', Validators.required)
+    estado: new FormControl('', Validators.required),
+    valorPorHora: new FormControl('', Validators.required)
   });
 
   constructor(
@@ -36,6 +38,7 @@ export class CadastroBicicletaComponent {
     if (this.idBicicleta !== 0){
       this.bicicletaService.buscarBicicletaPorId(this.idBicicleta).subscribe((bicicleta: Bicicleta) => {
         this.formulario.setValue({
+          valorPorHora: bicicleta.valorPorHora,
           codigo: bicicleta.codigo,
           marca: bicicleta.marca,
           estado: bicicleta.estado
@@ -49,6 +52,7 @@ export class CadastroBicicletaComponent {
       return this.alertaService.alertaErro("Preencha todos os campos!");
     }
     const bicicleta: Bicicleta = this.formulario.value as Bicicleta;
+    bicicleta.usuarioId = 1;
     if (this.idBicicleta) {
       bicicleta.id = this.idBicicleta;
       this.bicicletaService.alterarBicicleta(bicicleta).subscribe(() => {

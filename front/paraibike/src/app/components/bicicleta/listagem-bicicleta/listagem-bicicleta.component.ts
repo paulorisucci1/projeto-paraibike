@@ -26,14 +26,6 @@ export class ListagemBicicletaComponent {
     }
 
   listar(){
-    this.bicicletas = [
-      {
-        codigo: "983123",
-        marca: 'BikesElegantesLTDA',
-        valor: 20,
-        estado: 'Desgastada'
-      }
-    ]
     this.bicicletaService.listarBicicletas().subscribe((bicicletas: Bicicleta[]) => {
       this.bicicletas = bicicletas;
       console.log(this.bicicletas);

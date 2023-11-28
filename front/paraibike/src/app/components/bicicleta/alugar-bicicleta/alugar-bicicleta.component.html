@@ -10,16 +10,20 @@
 						<form class="example-form" [formGroup]="formulario">
 							<div class="mb-2">
 								<label>Modelo da Bicicleta:</label>
-                <input class="form-control" [value]="bicicleta.marca" placeholder="Data de Aluguel" readonly disabled>
+                <input class="form-control" [value]="bicicleta.marca" placeholder="Modelo da Bicicleta" readonly disabled>
               </div>
-							<div class="mb-2">
-								<label>Valor da Bicicleta:</label>
-                <input class="form-control" [value]="bicicleta.valor | currency: 'R$ '" placeholder="Data de Aluguel" readonly disabled>
+			  <div class="mb-2">
+			  	<label>Valor por Hora:</label>
+                <input class="form-control" [value]="bicicleta.valorPorHora | currency: 'R$ '" placeholder="Valor por hora" readonly disabled>
               </div>
               <div class="mb-2">
-								<label>Data do Aluguel:</label>
-                <input type="text" class="form-control" placeholder="Data de Aluguel" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="data" required>
+				<label>Data do Aluguel:</label>
+                <input type="datetime-local" class="form-control" placeholder="Data de Aluguel" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" formControlName="data" required>
               </div>
+			  <div class="mb-2">
+				<label>Quantidade de horas</label>
+                <input type="number" class="form-control" placeholder="Quantidade de horas" formControlName="quantidadeHoras" required>
+			  </div>
               <div class="d-flex align-items-center justify-content-center">
                 <button class="btn btn-secondary m-2" (click)="cancelar()">Cancelar</button>
                 <button class="btn btn-primary m-2" (click)="alugar()">Alugar</button>

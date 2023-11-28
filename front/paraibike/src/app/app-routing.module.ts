@@ -19,30 +19,37 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [AuthGuard],
     component: ListagemBicicletaComponent
   },
   {
     path: '',
+    canActivate: [AuthGuard],
     component: ListagemBicicletaComponent
   },
   {
     path: 'cadastro-bicicleta',
+    canActivate: [AuthGuard],
     component: CadastroBicicletaComponent
   },
   {
     path: 'alterar-bicicleta/:id',
+    canActivate: [AuthGuard],
     component: CadastroBicicletaComponent
   },
   {
     path: 'listar-bicicletas',
+    canActivate: [AuthGuard],
     component: ListagemBicicletaComponent
   },
   {
     path: 'alugar-bicicleta/:id',
+    canActivate: [AuthGuard],
     component: AlugarBicicletaComponent
   },
   {
     path: 'listar-alugueis',
+    canActivate: [AuthGuard],
     component: ListarAlugueisComponent
   }
 ];

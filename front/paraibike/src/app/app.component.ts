@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'paraibike';
 
   get token() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('Authorization');
   }
 }

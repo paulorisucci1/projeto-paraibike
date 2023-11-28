@@ -99,8 +99,7 @@ public class BicicletaService extends BicicletaServiceGrpc.BicicletaServiceImplB
 
     @Override
     public void deleteBicicleta(Bicicleta request, StreamObserver<Feedback> responseObserver) {
-        final var deletedEntity = BicicletaMapper.createBicicletaEntityFrom(request);
-        bicicletaRepository.delete(deletedEntity);
+        bicicletaRepository.deleteById(request.getId());
         responseObserver.onNext(
                 Feedback.newBuilder()
                         .setMessage("OK")

@@ -16,21 +16,29 @@ public class AluguelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    private BicicletaEntity bicicleta;
-
-    private Integer usuarioId;
-
-    private BigDecimal valor;
+    private Integer quantidadeHoras;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime data;
 
     private StatusAluguel status;
 
+    private Integer usuarioId;
+
+    private BigDecimal valor;
+
+    @OneToOne
+    private BicicletaEntity bicicleta;
+
     public void updateFrom(AluguelEntity updatedAluguel) {
-        setValor(updatedAluguel.getValor());
+        setQuantidadeHoras(updatedAluguel.getQuantidadeHoras());
         setData(updatedAluguel.getData());
         setStatus(updatedAluguel.getStatus());
+    }
+
+    public void addValor() {
+        valor = bicicleta
+                .getValorPorHora()
+                .multiply(BigDecimal.valueOf(quantidadeHoras));
     }
 }

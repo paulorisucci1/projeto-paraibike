@@ -8,6 +8,7 @@ import javax.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name="bicicletas")
@@ -24,11 +25,14 @@ public class BicicletaEntity implements Serializable {
 
     private String estado;
 
+    private BigDecimal valorPorHora;
+
     private Integer usuarioId;
 
     public void update(BicicletaEntity updatedBicicleta) {
         setCodigo(updatedBicicleta.getCodigo());
         setMarca(updatedBicicleta.getMarca());
         setEstado(updatedBicicleta.getEstado());
+        setValorPorHora(updatedBicicleta.getValorPorHora());
     }
 }

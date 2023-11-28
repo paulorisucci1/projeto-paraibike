@@ -13,7 +13,9 @@ public class AluguelDTO {
 
     private String status;
 
+    private Integer quantidadeHoras;
+
     private Integer usuarioId;
 
-    private BicicletaDTO bicicletaDTO;
+    private BicicletaDTO bicicleta;
 }

@@ -16,5 +16,7 @@ public class BicicletaDTO implements Serializable {
 
     private String estado;
 
+    private String valorPorHora;
+
     private Integer usuarioId;
 }

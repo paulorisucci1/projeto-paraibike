@@ -6,25 +6,26 @@ import br.edu.ifpb.pdist.model.AluguelDTO;
 public class AluguelMapper {
 
     public static AluguelDTO createAluguelDTOrom(Aluguel aluguel) {
-        AluguelDTO aluguelEntity = new AluguelDTO();
+        AluguelDTO aluguelDTO = new AluguelDTO();
 
-        aluguelEntity.setId(aluguel.getId());
-        aluguelEntity.setUsuarioId(aluguelEntity.getUsuarioId());
-        aluguelEntity.setBicicletaDTO(BicicletaMapper.createBicicletaDTOFrom(aluguel.getBicicleta()));
-        aluguelEntity.setData(aluguel.getData());
-        aluguelEntity.setValor(aluguel.getValor());
-        aluguelEntity.setStatus(aluguel.getStatus());
+        aluguelDTO.setId(aluguel.getId());
+        aluguelDTO.setUsuarioId(aluguel.getUsuarioId());
+        aluguelDTO.setBicicleta(BicicletaMapper.createBicicletaDTOFrom(aluguel.getBicicleta()));
+        aluguelDTO.setData(aluguel.getData());
+        aluguelDTO.setQuantidadeHoras(aluguel.getQuantidadeHoras());
+        aluguelDTO.setStatus(aluguel.getStatus());
+        aluguelDTO.setValor(aluguel.getValor());
 
-        return aluguelEntity;
+        return aluguelDTO;
     }
 
     public static Aluguel createAluguelFrom(AluguelDTO aluguelDTO) {
         return Aluguel.newBuilder()
                 .setId(aluguelDTO.getId())
                 .setUsuarioId(aluguelDTO.getUsuarioId())
-                .setBicicleta(BicicletaMapper.createBicicletaFrom(aluguelDTO.getBicicletaDTO()))
+                .setBicicleta(BicicletaMapper.createBicicletaFrom(aluguelDTO.getBicicleta()))
                 .setData(String.valueOf(aluguelDTO.getData()))
-                .setValor(String.valueOf(aluguelDTO.getValor()))
+                .setQuantidadeHoras(aluguelDTO.getQuantidadeHoras())
                 .setStatus(aluguelDTO.getStatus())
                 .build();
     }

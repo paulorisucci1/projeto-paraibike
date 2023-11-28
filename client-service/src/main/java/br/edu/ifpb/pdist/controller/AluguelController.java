@@ -2,16 +2,16 @@ package br.edu.ifpb.pdist.controller;
 
 
 import br.com.paraibike.protofiles.Aluguel;
-import br.com.paraibike.protofiles.Bicicleta;
-import br.com.paraibike.protofiles.Usuario;
 import br.edu.ifpb.pdist.model.AluguelDTO;
 import br.edu.ifpb.pdist.service.AluguelService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import static br.edu.ifpb.pdist.mapper.BicicletaMapper.*;
+
 
 @RestController
 @AllArgsConstructor
@@ -35,10 +35,10 @@ public class AluguelController {
     public ResponseEntity<AluguelDTO> create(@RequestBody AluguelDTO aluguelDTO) {
         final var aluguel = Aluguel.newBuilder()
                 .setUsuarioId(aluguelDTO.getUsuarioId())
-                .setBicicleta(Bicicleta.newBuilder().setId(aluguelDTO.getBicicletaDTO().getId()).build())
+                .setBicicleta(createBicicletaFrom(aluguelDTO.getBicicleta()))
                 .setData(String.valueOf(aluguelDTO.getData()))
-                .setValor(String.valueOf(aluguelDTO.getValor()))
-                .setStatus(aluguelDTO.getStatus())
+                .setQuantidadeHoras(aluguelDTO.getQuantidadeHoras())
+                .setStatus("Aprovado")
                 .build();
         return ResponseEntity.ok(aluguelService.create(aluguel));
     }
@@ -48,8 +48,8 @@ public class AluguelController {
         final var aluguel = Aluguel.newBuilder()
                 .setId(aluguelId)
                 .setData(String.valueOf(aluguelDTO.getData()))
-                .setValor(String.valueOf(aluguelDTO.getValor()))
-                .setStatus(aluguelDTO.getStatus())
+                .setQuantidadeHoras(aluguelDTO.getQuantidadeHoras())
+                .setStatus("Aprovado")
                 .build();
         return ResponseEntity.ok(aluguelService.update(aluguel));
     }

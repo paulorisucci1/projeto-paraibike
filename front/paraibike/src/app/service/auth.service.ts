@@ -21,7 +21,12 @@ export class AuthService {
     private http: HttpClient) { }
 
   criarLogin(login: Login) {
-    return this.http.post<Login>(`${this.API}`, login);
+    return this.http.post<Login>(`${this.API}`, {
+      user: {
+        "email": login.email,
+        "password": login.password
+      }
+    }, {observe: 'response'});
   }
 
   login(login: Login): void{

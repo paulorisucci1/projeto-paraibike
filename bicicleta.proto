@@ -10,7 +10,8 @@ message Bicicleta {
   string codigo = 2;
   string marca = 3;
   string estado = 4;
-  int32 usuarioId = 5;
+  string valorPorHora = 5;
+  int32 usuarioId = 6;
 }
 
 message Usuario {
@@ -23,11 +24,12 @@ message Bicicletas {
 
 message Aluguel {
   int32 id = 1;
-  string valor = 2;
-  string data = 3;
+  string data = 2;
+  int32 quantidadeHoras = 3;
   string status = 4;
-  int32 usuarioId = 5;
-  Bicicleta bicicleta = 6;
+  string valor = 5;
+  int32 usuarioId = 6;
+  Bicicleta bicicleta = 7;
 }
 
 message Alugueis {

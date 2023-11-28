@@ -18,6 +18,7 @@ class BicicletasController < ApplicationController
           codigo: bicicleta_params[:codigo],
           marca: bicicleta_params[:marca],
           estado: bicicleta_params[:estado],
+          valorPorHora: bicicleta_params[:valorPorHora],
           usuarioId: bicicleta_params[:usuarioId]
         }
       ))
@@ -31,6 +32,7 @@ class BicicletasController < ApplicationController
           codigo: bicicleta_params[:codigo],
           marca: bicicleta_params[:marca],
           estado: bicicleta_params[:estado],
+          valorPorHora: bicicleta_params[:valorPorHora],
           usuarioId: bicicleta_params[:usuarioId]
         }
       ))
@@ -49,7 +51,7 @@ class BicicletasController < ApplicationController
 
   def bicicleta_params
     params.permit(
-      :bicicleta_id, :codigo, :marca, :estado, :usuarioId
+      :bicicleta_id, :codigo, :marca, :estado, :valorPorHora, :usuarioId
     )
   end
   def stub

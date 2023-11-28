@@ -13,7 +13,7 @@ import { AlertaService } from 'src/app/service/alerta.service';
 export class CadastroLocadorComponent {
 
     usuarios: Usuario[] | undefined;
-  
+
     idUsuario = 0;
 
     formulario = new FormGroup({
@@ -23,7 +23,7 @@ export class CadastroLocadorComponent {
       password: new FormControl('', Validators.required),
       password_confirmation: new FormControl('', Validators.required)
     })
-  
+
     constructor(
       private router: Router,
       private route: ActivatedRoute,
@@ -37,6 +37,7 @@ export class CadastroLocadorComponent {
 
     enviar(){
       const usuario: Usuario = this.formulario.value as Usuario;
+      usuario.flag = 1;
 
       if (this.formulario.invalid) {
         this.alertaService.alertaErro("Preencha todos os campos");

@@ -4,4 +4,5 @@ export interface Usuario {
     email: string;
     password: string;
     password_confirmation: string;
+    flag?: number;
 }

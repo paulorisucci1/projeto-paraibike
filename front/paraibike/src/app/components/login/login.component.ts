@@ -15,7 +15,7 @@ export class LoginComponent {
   login!: Login;
 
   formulario = new FormGroup({
-    email: new FormControl('', Validators.email),
+    username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   })
 
@@ -33,8 +33,8 @@ export class LoginComponent {
     const login: Login = this.formulario.value as Login;
 
     this.authService.criarLogin(login).subscribe((response: any) => {
-      if (response.token) {
-        localStorage.setItem('token', response.token);
+      if (response.header.getAttribute("authorization")) {
+        localStorage.setItem('authorization', response.header.getAttribute("authorization"));
         this.router.navigate(['/listar-bicicletas']);
       } else {
         console.log("Erro ao logar");

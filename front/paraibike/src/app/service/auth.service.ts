@@ -22,7 +22,7 @@ export class AuthService {
 
   criarLogin(login: Login) {
     return this.http.post<Login>(`${this.API}`, login);
-  }  
+  }
 
   login(login: Login): void{
     localStorage.setItem('token', login.password);

@@ -13,7 +13,7 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   criarUsuario(usuario: Usuario) {
-    return this.http.post<Usuario>(`${this.API}/signup`, usuario);
+    return this.http.post<Usuario>(`${this.API}/signup`, {"user": usuario});
   }
 
   listarUsuarios(){

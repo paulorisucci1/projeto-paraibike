@@ -1,9 +1,15 @@
+require 'grpc'
+require 'bicicleta_services_pb'
 class ProfileController < ApplicationController
   before_action :authenticate_user!
+  before_action :stub
 
   # GET /
   def index
-    render json: UserSerializer.new(current_user).serializable_hash[:data][:attributes], status: :ok
+    render json: {
+      user: UserSerializer.new(current_user).serializable_hash[:data][:attributes],
+      bikes: stub.list_bicicletas(Paraibike::NoContent.new)
+    }, status: :ok
   end
 
   # PUT /profile/:id
@@ -21,6 +27,10 @@ class ProfileController < ApplicationController
   end
 
   private
+
+  def stub
+    @stub = Paraibike::BicicletaService::Stub.new('host.docker.internal:9000', :this_channel_is_insecure)
+  end
 
   def user_params
     params.permit(

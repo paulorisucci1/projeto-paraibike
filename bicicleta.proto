@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option java_package = "br.com.paraibike.protofiles";
+package paraibike;
+
+option java_multiple_files = true;
+
+message Bicicleta {
+  int32 id = 1;
+  string codigo = 2;
+  string marca = 3;
+  string estado = 4;
+  int32 usuarioId = 5;
+}
+
+message Usuario {
+  int32 id = 1;
+}
+
+message Bicicletas {
+  repeated Bicicleta bicicletas = 1;
+}
+
+message Aluguel {
+  int32 id = 1;
+  string valor = 2;
+  string data = 3;
+  string status = 4;
+  int32 usuarioId = 5;
+  Bicicleta bicicleta = 6;
+}
+
+message Alugueis {
+  repeated Aluguel aluguel = 1;
+}
+
+message NoContent {}
+
+message Feedback {
+  string message = 1;
+}
+
+service BicicletaService {
+  rpc findBicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc listBicicletas(NoContent) returns (Bicicletas) {}
+  rpc listBicicletasByLocador(Usuario) returns (Bicicletas) {}
+  rpc createBicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc updateBicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc deleteBicicleta(Bicicleta) returns (Feedback) {}
+}
+
+service AluguelService {
+  rpc findAluguel(Aluguel) returns (Aluguel) {}
+  rpc listAlugueis(NoContent) returns (Alugueis) {}
+  rpc createAluguel(Aluguel) returns (Aluguel) {}
+  rpc updateAluguel(Aluguel) returns (Aluguel) {}
+  rpc deleteAluguel(Aluguel) returns (Feedback) {}
+}

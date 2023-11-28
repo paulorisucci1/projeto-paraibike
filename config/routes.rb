@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: {
-    sign_in: 'login',
+    sign_in: 'auth/login',
     sign_out: 'logout',
     registration: 'signup'
   }, controllers: {
@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :users, param: :_username, except: :create
   resources :profile, only: [:index, :update]
+  resources :bicicletas
   get '/*a', to: 'application#not_found'
 end

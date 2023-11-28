@@ -13,6 +13,10 @@ gem "puma", ">= 5.0"
 
 gem "pg"
 
+gem 'grpc'
+gem 'grpc-tools'
+
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

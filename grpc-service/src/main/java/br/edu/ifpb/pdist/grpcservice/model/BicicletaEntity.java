@@ -23,7 +23,7 @@ public class BicicletaEntity implements Serializable {
 
     private String marca;
 
-    private String estado;
+    private EstadoBicicleta estado;
 
     private BigDecimal valorPorHora;
 

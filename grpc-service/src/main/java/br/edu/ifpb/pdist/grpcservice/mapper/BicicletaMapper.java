@@ -1,9 +1,8 @@
 package br.edu.ifpb.pdist.grpcservice.mapper;
 
-import br.com.paraibike.protofiles.Aluguel;
 import br.com.paraibike.protofiles.Bicicleta;
-import br.edu.ifpb.pdist.grpcservice.model.AluguelEntity;
 import br.edu.ifpb.pdist.grpcservice.model.BicicletaEntity;
+import br.edu.ifpb.pdist.grpcservice.model.EstadoBicicleta;
 
 import java.math.BigDecimal;
 
@@ -15,7 +14,7 @@ public class BicicletaMapper {
         bicicletaEntity.setId(bicicleta.getId());
         bicicletaEntity.setCodigo(bicicleta.getCodigo());
         bicicletaEntity.setMarca(bicicleta.getMarca());
-        bicicletaEntity.setEstado(bicicleta.getEstado());
+        bicicletaEntity.setEstado(EstadoBicicleta.getEstadoBicicletaFromName(bicicleta.getEstado()));
         bicicletaEntity.setUsuarioId(bicicleta.getUsuarioId());
         bicicletaEntity.setValorPorHora(new BigDecimal(bicicleta.getValorPorHora()));
 
@@ -29,24 +28,25 @@ public class BicicletaMapper {
                 .setId(bicicletaEntity.getId())
                 .setCodigo(bicicletaEntity.getCodigo())
                 .setMarca(bicicletaEntity.getMarca())
-                .setEstado(bicicletaEntity.getEstado())
+                .setEstado(bicicletaEntity.getEstado().getDescricao())
                 .setUsuarioId(bicicletaEntity.getUsuarioId())
                 .setValorPorHora(String.valueOf(bicicletaEntity.getValorPorHora()))
                 .build();
     }
 
 
-    public static BicicletaEntity createBicicletaEntityFromAluguel(Aluguel aluguel) {
+    public static BicicletaEntity createBicicletaEntityForAluguel(Bicicleta bicicleta) {
 
-        BicicletaEntity bicicleta = new BicicletaEntity();
-        bicicleta.setId(aluguel.getBicicleta().getId());
-        return bicicleta;
+        BicicletaEntity bicicletaEntity = new BicicletaEntity();
+        bicicletaEntity.setId(bicicleta.getId());
+        bicicletaEntity.setValorPorHora(new BigDecimal(bicicleta.getValorPorHora()));
+        return bicicletaEntity;
     }
 
-    public static Bicicleta createBicicletaFromAluguelEntity(AluguelEntity aluguel) {
+    public static Bicicleta createBicicletaWithId(BicicletaEntity bicicletaEntity) {
         return Bicicleta
                 .newBuilder()
-                .setId(aluguel.getBicicleta().getId())
+                .setId(bicicletaEntity.getId())
                 .build();
     }
 }

@@ -51,7 +51,7 @@ public class BicicletaService {
                 .newBuilder()
                 .setId(bicicletaId)
                 .build();
-        synchronousClient.deleteBicicleta(bicicleta);
+        synchronousClient.inactivateBicicleta(bicicleta);
     }
 
     public List<BicicletaDTO> listByLocador(Integer idLocador) {

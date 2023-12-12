@@ -3,6 +3,7 @@ package br.edu.ifpb.pdist.grpcservice.service;
 import br.com.paraibike.protofiles.*;
 import br.edu.ifpb.pdist.grpcservice.exceptions.EntityNotFoundException;
 import br.edu.ifpb.pdist.grpcservice.mapper.BicicletaMapper;
+import br.edu.ifpb.pdist.grpcservice.model.EstadoBicicleta;
 import br.edu.ifpb.pdist.grpcservice.repository.BicicletaRepository;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
@@ -98,8 +99,11 @@ public class BicicletaService extends BicicletaServiceGrpc.BicicletaServiceImplB
     }
 
     @Override
-    public void deleteBicicleta(Bicicleta request, StreamObserver<Feedback> responseObserver) {
-        bicicletaRepository.deleteById(request.getId());
+    public void inactivateBicicleta(Bicicleta request, StreamObserver<Feedback> responseObserver) {
+        final var entity = bicicletaRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Fodeu"));
+        entity.setEstado(EstadoBicicleta.INATIVA);
+        bicicletaRepository.save(entity);
+
         responseObserver.onNext(
                 Feedback.newBuilder()
                         .setMessage("OK")

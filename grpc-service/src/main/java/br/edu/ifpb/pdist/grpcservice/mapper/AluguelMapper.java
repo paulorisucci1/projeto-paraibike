@@ -7,8 +7,7 @@ import br.edu.ifpb.pdist.grpcservice.model.StatusAluguel;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static br.edu.ifpb.pdist.grpcservice.mapper.BicicletaMapper.createBicicletaEntityFrom;
-import static br.edu.ifpb.pdist.grpcservice.mapper.BicicletaMapper.createBicicletaEntityFromAluguel;
+import static br.edu.ifpb.pdist.grpcservice.mapper.BicicletaMapper.*;
 
 public class AluguelMapper {
 
@@ -17,7 +16,7 @@ public class AluguelMapper {
 
         aluguelEntity.setId(aluguel.getId());
         aluguelEntity.setUsuarioId(aluguel.getUsuarioId());
-        aluguelEntity.setBicicleta(createBicicletaEntityFrom(aluguel.getBicicleta()));
+        aluguelEntity.setBicicleta(createBicicletaEntityForAluguel(aluguel.getBicicleta()));
         aluguelEntity.setData(LocalDateTime.parse(aluguel.getData(), DateTimeFormatter.ISO_DATE_TIME));
         aluguelEntity.setQuantidadeHoras(aluguel.getQuantidadeHoras());
         aluguelEntity.setStatus(StatusAluguel.getStatusFromDescricao(aluguel.getStatus()));
@@ -30,7 +29,7 @@ public class AluguelMapper {
         return Aluguel.newBuilder()
                 .setId(aluguelEntity.getId())
                 .setUsuarioId(aluguelEntity.getUsuarioId())
-                .setBicicleta(BicicletaMapper.createBicicletaFrom(aluguelEntity.getBicicleta()))
+                .setBicicleta(createBicicletaFrom(aluguelEntity.getBicicleta()))
                 .setData(String.valueOf(aluguelEntity.getData()))
                 .setQuantidadeHoras(aluguelEntity.getQuantidadeHoras())
                 .setStatus(aluguelEntity.getStatus().getDescricao())

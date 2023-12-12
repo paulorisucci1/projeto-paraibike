@@ -3,6 +3,7 @@ package br.edu.ifpb.pdist.grpcservice.service;
 import br.com.paraibike.protofiles.*;
 import br.edu.ifpb.pdist.grpcservice.mapper.AluguelMapper;
 import br.edu.ifpb.pdist.grpcservice.model.AluguelEntity;
+import br.edu.ifpb.pdist.grpcservice.model.StatusAluguel;
 import br.edu.ifpb.pdist.grpcservice.repository.AluguelRepository;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
@@ -64,10 +65,14 @@ public class AluguelService extends AluguelServiceGrpc.AluguelServiceImplBase {
     }
 
     @Override
-    public void deleteAluguel(Aluguel request, StreamObserver<Feedback> responseObserver) {
-        final var deletedEntity = new AluguelEntity();
-        deletedEntity.setId(request.getId());
-        aluguelRepository.delete(deletedEntity);
+    public void cancelAluguel(Aluguel request, StreamObserver<Feedback> responseObserver) {
+        final var cancelledAluguel = aluguelRepository
+                .findById(request.getId())
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Fodeu"));
+        cancelledAluguel.setStatus(StatusAluguel.CANCELADO);
+        aluguelRepository.save(cancelledAluguel);
         responseObserver.onNext(
                 Feedback.newBuilder()
                         .setMessage("OK")

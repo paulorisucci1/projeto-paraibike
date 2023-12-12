@@ -51,6 +51,6 @@ public class AluguelService {
                 .newBuilder()
                 .setId(aluguelId)
                 .build();
-        synchronousClient.deleteAluguel(aluguel);
+        synchronousClient.cancelAluguel(aluguel);
     }
 }

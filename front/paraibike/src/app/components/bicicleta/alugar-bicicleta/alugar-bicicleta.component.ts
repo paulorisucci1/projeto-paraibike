@@ -48,7 +48,7 @@ export class AlugarBicicletaComponent {
     body.usuarioId = 1;
     body.status = "Aprovado";
     this.aluguelService.criarAluguel(body).subscribe(() => {
-      this.alertaService.alertaSucesso("Bike irada alugada com sucesso!");
+      this.alertaService.alertaSucesso("Bicicleta alugada com sucesso!");
       this.router.navigate(['/listar-bicicletas']);
     }, (error) => {
       console.log(error);

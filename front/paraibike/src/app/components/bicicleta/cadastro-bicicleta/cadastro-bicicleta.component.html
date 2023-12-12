@@ -16,9 +16,14 @@
                 <input type="text" class="form-control" placeholder="Marca" aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm" formControlName="marca" required>
               </div>
-              <div class="input-group input-group-sm mb-3 mt-4 input-color">
-                <input type="text" class="form-control" placeholder="Estado" aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm" formControlName="estado" required>
+              <div class="input-group inputContainer input-group-sm mb-3 mt-4 input-color">
+                <select class="form-control inputStatus" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" formControlName="estado" required>
+                  <option value="" disabled selected>Estado</option>
+                  <option value="NOVA">Nova</option>
+                  <option value="BOM_ESTADO">Bom estado de conservação</option>
+                  <option value="INATIVA">Inativa</option>
+                </select>
               </div>
               <div class="input-group input-group-sm mb-3 mt-4 input-color">
                 <input type="number" class="form-control" placeholder="Valor por hora (R$)" aria-label="Sizing example input"

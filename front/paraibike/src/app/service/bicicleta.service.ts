@@ -33,4 +33,10 @@ export class BicicletaService {
     return this.http.get<Bicicleta>(`${this.API}/${id}`);
   }
 
+  ativarBicicleta(bicicleta: Bicicleta) {
+    let bicicletaNova = Object.assign({}, bicicleta)
+    bicicletaNova.estado = "BOM_ESTADO"
+    return this.alterarBicicleta(bicicletaNova)
+  }
+
 }

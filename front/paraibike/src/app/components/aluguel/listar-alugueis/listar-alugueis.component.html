@@ -13,6 +13,7 @@
                   <th>Valor</th>
                   <th>Data da Locação</th>
                   <th>Status</th>
+                  <th>Código da Bicicleta</th>
                   <th>Modelo da Bicicleta</th>
                   <th>Ações</th>
                 </thead>
@@ -21,6 +22,7 @@
                     <td> {{ aluguel.valor | currency: 'R$ ' }} </td>
                     <td> {{ aluguel.data }} </td>
                     <td> {{ aluguel.status }} </td>
+                    <td> {{aluguel.bicicleta.codigo}} </td>
                     <td> {{ aluguel.bicicleta.marca }} </td>
                     <td class="d-flex justify-content-center">
 											<button class="btn btn-sm m-1 btn-danger pull-right" (click)="cancelarAluguel(aluguel)">Cancelar Aluguel</button>

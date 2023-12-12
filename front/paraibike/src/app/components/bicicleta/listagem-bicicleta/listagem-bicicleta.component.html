@@ -30,8 +30,12 @@
 											<button [routerLink]="['/alterar-bicicleta/', bicicleta.id]"
 												class="btn btn-sm m-1 btn-secondary pull-right">Editar</button>
 											<button (click)="deletar(bicicleta.id!)"
-												class="btn btn-sm m-1 btn-danger pull-right">Deletar</button>
-											<button [routerLink]="['/alugar-bicicleta/', bicicleta.id]"
+                              *ngIf="bicicleta.estado != 'Inativa'"
+												class="btn btn-sm m-1 btn-danger pull-right">Inativar</button>
+                      <button (click)="ativar(bicicleta)"
+                              *ngIf="bicicleta.estado == 'Inativa'"
+                              class="btn btn-sm m-1 green pull-right">Ativar</button>
+											<button [routerLink]="['/alugar-bicicleta/', bicicleta.id]" *ngIf="bicicleta.estado != 'Inativa'"
 												class="btn btn-sm m-1 btn-primary pull-right">Alugar</button>
 										</td>
 									</tr>

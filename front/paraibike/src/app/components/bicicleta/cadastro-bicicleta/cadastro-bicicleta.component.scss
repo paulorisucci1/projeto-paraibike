@@ -10,21 +10,21 @@ body{
   background-color: #FFFFFF;
   margin-top: 5rem;
 }
-  
+
 .login{
     background-color: #00a4e4;
     color: #fff;
     width: 7.3rem;
     border-color: #00a4e4;
     border-radius: 0.25rem;
-} 
+}
 
 .cancelar{
     width: 7.3rem;
     border-radius: 0.25rem;
     margin-right: 1rem;
     margin-left: 25rem;
-} 
+}
 
 mat-card-title{
     font-size: 1.5rem;
@@ -36,7 +36,26 @@ mat-card-title{
     margin-top: 1rem;
 }
 
-input.form-control{
+input.form-control, select.form-control{
     background-color: #D8D9DA;
     height: 46px;
+}
+
+.inputStatus {
+  width: 80vw;
+  outline: none;
+  border: none;
+}
+
+select {
+  width: 100vw;
+  outline: none;
+  border: none;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  border: 1px solid black;
 }

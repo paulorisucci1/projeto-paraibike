@@ -10,6 +10,17 @@ class BicicletasController < ApplicationController
     render json: @stub.list_bicicletas(Paraibike::NoContent.new)
   end
 
+  def show
+    render json: @stub.find_bicicleta(Paraibike::Bicicleta.new({
+                                                                 id: bicicleta_params[:id].to_i,
+                                                                 codigo: bicicleta_params[:codigo],
+                                                                 marca: bicicleta_params[:marca],
+                                                                 estado: bicicleta_params[:estado],
+                                                                 valorPorHora: bicicleta_params[:valorPorHora],
+                                                                 usuarioId: bicicleta_params[:usuarioId]
+                                                               }))
+  end
+
   def create
     render json: @stub.create_bicicleta(
       Paraibike::Bicicleta.new(
@@ -28,7 +39,7 @@ class BicicletasController < ApplicationController
     render json: @stub.update_bicicleta(
       Paraibike::Bicicleta.new(
         {
-          id: bicicleta_params[:bicicleta_id].to_i,
+          id: bicicleta_params[:id].to_i,
           codigo: bicicleta_params[:codigo],
           marca: bicicleta_params[:marca],
           estado: bicicleta_params[:estado],
@@ -42,7 +53,7 @@ class BicicletasController < ApplicationController
     render json: @stub.delete_bicicleta(
       Paraibike::Bicicleta.new(
         {
-          id: bicicleta_params[:bicicleta_id].to_i,
+          id: bicicleta_params[:id].to_i,
         }
       ))
   end
@@ -51,7 +62,7 @@ class BicicletasController < ApplicationController
 
   def bicicleta_params
     params.permit(
-      :bicicleta_id, :codigo, :marca, :estado, :valorPorHora, :usuarioId
+      :id, :bicicleta_id, :codigo, :marca, :estado, :valorPorHora, :usuarioId
     )
   end
   def stub

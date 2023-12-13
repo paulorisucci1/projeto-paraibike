@@ -16,6 +16,22 @@ gem "pg"
 gem 'grpc'
 gem 'grpc-tools'
 
+# Gemfile
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+# Gemfile
+group :development, :test do
+  gem 'factory_bot_rails'
+end
+
+# Gemfile
+group :development, :test do
+  gem 'faker'
+end
+
+
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Bicicleta } from '../interface/bicicleta';
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -38,5 +38,8 @@ export class BicicletaService {
     bicicletaNova.estado = "BOM_ESTADO"
     return this.alterarBicicleta(bicicletaNova)
   }
+
+  private bicicletas: any[] = [];
+
 
 }

@@ -40,3 +40,16 @@ input.form-control{
   background-color: #D8D9DA;
   height: 46px;
 }
+
+.main-content {
+  background-image: url('/assets/images/Imagem3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-cadastro{
+  margin-bottom: 25rem;
+}

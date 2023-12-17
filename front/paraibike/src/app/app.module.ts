@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { AlugarBicicletaComponent } from './components/bicicleta/alugar-bicicleta/alugar-bicicleta.component';
 import { ListarAlugueisComponent } from './components/aluguel/listar-alugueis/listar-alugueis.component';
 import { SidebarComponent } from './shared/template/sidebar/sidebar.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SidebarComponent } from './shared/template/sidebar/sidebar.component';
     HttpClientModule,
     CoreModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

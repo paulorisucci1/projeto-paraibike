@@ -33,3 +33,30 @@ input.form-control{
     background-color: #D8D9DA;
     height: 46px;
 }
+
+.logo{
+    height: 8rem;
+    width: 19rem;
+    color: black;
+    border-radius: 1rem;
+    background-color: #1BB1DA;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+body {
+    background-image: url('/assets/images/Imagem2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    margin-left: 59rem;
+    margin-bottom: 10rem;
+    border-radius: 1rem;
+}

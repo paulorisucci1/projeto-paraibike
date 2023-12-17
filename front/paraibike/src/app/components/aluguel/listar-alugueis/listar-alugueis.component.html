@@ -1,5 +1,5 @@
 <div class="main-content">
-  <div class="container-fluid">
+  <div class="container-fluid card-cadastro">
     <div class="row">
       <div class="col-md-12">
         <div class="card">
@@ -7,6 +7,26 @@
             <h4 class="card-title">Listar Alugueis</h4>
           </div>
           <div class="card-body">
+            <form [formGroup]="formulario" class="d-flex">
+              <div>             
+                <input
+                  type="text"
+                  class="form-control mr-2"
+                  aria-label="Sizing example input"
+                  formControlName="data"
+                />
+              </div>
+              <div class="botoes">
+                <button class="btn btn-secondary" (click)="limpar()">
+                  LIMPAR
+                </button>
+                <button class="btn btn-primary" (click)="buscar()">
+                  BUSCAR
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="card-body" *ngIf="!buscando && alugueis.length > 0">
             <div class="table-responsive">
               <table class="table">
                 <thead class="text-center">
@@ -30,6 +50,37 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="buscando && resultadoBusca.length > 0">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-center">
+                  <th>Valor</th>
+                  <th>Data da Locação</th>
+                  <th>Status</th>
+                  <th>Código da Bicicleta</th>
+                  <th>Modelo da Bicicleta</th>
+                  <th>Ações</th>
+                </thead>
+                <tbody class="text-center">
+                  <tr *ngFor="let aluguel of resultadoBusca">
+                    <td> {{ aluguel.valor | currency: 'R$ ' }} </td>
+                    <td> {{ aluguel.data }} </td>
+                    <td> {{ aluguel.status }} </td>
+                    <td> {{aluguel.bicicleta.codigo}} </td>
+                    <td> {{ aluguel.bicicleta.marca }} </td>
+                    <td class="d-flex justify-content-center">
+											<button class="btn btn-sm m-1 btn-danger pull-right" (click)="cancelarAluguel(aluguel)">Cancelar Aluguel</button>
+										</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="buscando && resultadoBusca.length === 0">
+            <div *ngIf="buscando && resultadoBusca">
+              <p class="feedback">Nenhum resultado encontrado.</p>
             </div>
           </div>
         </div>

@@ -1,50 +1,180 @@
 <div class="main-content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="card">
-					<div id="header" class="card-header">
-						<h4 class="card-title ">Bicicletas
-							<button [routerLink]="['/cadastro-bicicleta']" id="cadastrar"
-								class="btn btn-sm btn-primary float-right">Cadastrar</button>
-						</h4>
-					</div>
-					<div class="card-body">
+  <div class="container-fluid card-bicicleta">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div id="header" class="card-header">
+            <h4 class="card-title">
+              Bicicletas
+              <button
+                [routerLink]="['/cadastro-bicicleta']"
+                id="cadastrar"
+                class="btn btn-sm btn-primary float-right"
+              >
+                Cadastrar
+              </button>
+            </h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="formulario" class="d-flex">
+              <div class="marca">
+                Marca
+                <input
+                  type="text"
+                  class="form-control mr-2"
+                  placeholder="Marca"
+                  aria-label="Sizing example input"
+                  formControlName="marca"
+                />
+              </div>
+              <div class="espacamento-select">
+                Estado
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="selectedEstado"
 
-						<div class="table-responsive">
-							<table class="table">
-								<thead class="text-center">
-									<th>Código</th>
-									<th>Marca</th>
-									<th>Estado</th>
-									<th>Valor</th>
-									<th>Ações</th>
-								</thead>
-								<tbody class="text-center">
-									<tr *ngFor="let bicicleta of bicicletas">
-										<td>{{ bicicleta.codigo }}</td>
-										<td>{{ bicicleta.marca }}</td>
-										<td>{{ bicicleta.estado }}</td>
-										<td>{{ bicicleta.valorPorHora | currency: 'R$ ' }}</td>
-										<td class="d-flex justify-content-center">
-											<button [routerLink]="['/alterar-bicicleta/', bicicleta.id]"
-												class="btn btn-sm m-1 btn-secondary pull-right">Editar</button>
-											<button (click)="deletar(bicicleta.id!)"
-                              *ngIf="bicicleta.estado != 'Inativa'"
-												class="btn btn-sm m-1 btn-danger pull-right">Inativar</button>
-                      <button (click)="ativar(bicicleta)"
-                              *ngIf="bicicleta.estado == 'Inativa'"
-                              class="btn btn-sm m-1 green pull-right">Ativar</button>
-											<button [routerLink]="['/alugar-bicicleta/', bicicleta.id]" *ngIf="bicicleta.estado != 'Inativa'"
-												class="btn btn-sm m-1 btn-primary pull-right">Alugar</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+                >
+                  <option selected>Estado</option>
+                  <option
+                    *ngFor="let bicicleta of bicicletas"
+                    [value]="bicicleta.estado"
+                  >
+                    {{ bicicleta.estado }}
+                  </option>
+                </select>
+              </div>
+              <div class="espacamento-select">
+                Valor
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="selectedValor"
+                >
+                  <option selected>Valor</option>
+                  <option
+                    *ngFor="let bicicleta of bicicletas"
+                    [value]="bicicleta.valorPorHora"
+                  >
+                    {{ bicicleta.valorPorHora }}
+                  </option>
+                </select>
+              </div>
+              <div class="botoes">
+                <button class="btn btn-secondary" (click)="limpar()">
+                  LIMPAR
+                </button>
+                <button class="btn btn-primary" (click)="buscar()">
+                  BUSCAR
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="card-body" *ngIf="!buscando && bicicletas.length > 0">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-center">
+                  <th>Código</th>
+                  <th>Marca</th>
+                  <th>Estado</th>
+                  <th>Valor</th>
+                  <th>Ações</th>
+                </thead>
+                <tbody class="text-center">
+                  <tr *ngFor="let bicicleta of bicicletas">
+                    <td>{{ bicicleta.codigo }}</td>
+                    <td>{{ bicicleta.marca }}</td>
+                    <td>{{ bicicleta.estado }}</td>
+                    <td>{{ bicicleta.valorPorHora | currency : "R$ " }}</td>
+                    <td class="d-flex justify-content-center">
+                      <button
+                        [routerLink]="['/alterar-bicicleta/', bicicleta.id]"
+                        class="btn btn-sm m-1 btn-secondary pull-right"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        (click)="deletar(bicicleta.id!)"
+                        *ngIf="bicicleta.estado != 'Inativa'"
+                        class="btn btn-sm m-1 btn-danger pull-right"
+                      >
+                        Inativar
+                      </button>
+                      <button
+                        (click)="ativar(bicicleta)"
+                        *ngIf="bicicleta.estado == 'Inativa'"
+                        class="btn btn-sm m-1 green pull-right"
+                      >
+                        Ativar
+                      </button>
+                      <button
+                        [routerLink]="['/alugar-bicicleta/', bicicleta.id]"
+                        *ngIf="bicicleta.estado != 'Inativa'"
+                        class="btn btn-sm m-1 btn-primary pull-right"
+                      >
+                        Alugar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="buscando && resultadoBusca.length > 0">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-center">
+                  <th>Código</th>
+                  <th>Marca</th>
+                  <th>Estado</th>
+                  <th>Valor</th>
+                  <th>Ações</th>
+                </thead>
+                <tbody class="text-center">
+                  <tr *ngFor="let bicicleta of resultadoBusca">
+                    <td>{{ bicicleta.codigo }}</td>
+                    <td>{{ bicicleta.marca }}</td>
+                    <td>{{ bicicleta.estado }}</td>
+                    <td>{{ bicicleta.valorPorHora | currency : "R$ " }}</td>
+                    <td class="d-flex justify-content-center">
+                      <button
+                        [routerLink]="['/alterar-bicicleta/', bicicleta.id]"
+                        class="btn btn-sm m-1 btn-secondary pull-right"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        (click)="deletar(bicicleta.id!)"
+                        *ngIf="bicicleta.estado != 'Inativa'"
+                        class="btn btn-sm m-1 btn-danger pull-right"
+                      >
+                        Inativar
+                      </button>
+                      <button
+                        (click)="ativar(bicicleta)"
+                        *ngIf="bicicleta.estado == 'Inativa'"
+                        class="btn btn-sm m-1 green pull-right"
+                      >
+                        Ativar
+                      </button>
+                      <button
+                        [routerLink]="['/alugar-bicicleta/', bicicleta.id]"
+                        *ngIf="bicicleta.estado != 'Inativa'"
+                        class="btn btn-sm m-1 btn-primary pull-right"
+                      >
+                        Alugar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="buscando && resultadoBusca.length === 0">
+            <p class="feedback">Nenhum resultado encontrado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

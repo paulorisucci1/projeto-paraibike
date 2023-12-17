@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { CreditosService } from 'src/app/service/creditos.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,13 +10,23 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  creditos: String = '20,00'
+  constructor(private router: Router, 
+    private creditoService: CreditosService) { }
 
   ngOnInit() {
   }
 
   mudarRota(rota: string) {
     this.router.navigate([rota]);
+  }
+
+  consultarCreditos() {
+    this.creditoService.consultarCreditos();
+  }
+
+  comprarCreditos() {
+    
   }
 
 }

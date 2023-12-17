@@ -59,3 +59,16 @@ select {
   gap: 2px;
   border: 1px solid black;
 }
+
+.main-content {
+  background-image: url('/assets/images/Imagem3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-cadastro{
+  margin-bottom: 25rem;
+}

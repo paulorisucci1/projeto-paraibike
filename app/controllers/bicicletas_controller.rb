@@ -17,7 +17,7 @@ class BicicletasController < ApplicationController
                                                                  marca: bicicleta_params[:marca],
                                                                  estado: bicicleta_params[:estado],
                                                                  valorPorHora: bicicleta_params[:valorPorHora],
-                                                                 usuarioId: bicicleta_params[:usuarioId]
+                                                                 usuarioId: current_user.id
                                                                }))
   end
 
@@ -30,7 +30,7 @@ class BicicletasController < ApplicationController
           marca: bicicleta_params[:marca],
           estado: bicicleta_params[:estado],
           valorPorHora: bicicleta_params[:valorPorHora],
-          usuarioId: bicicleta_params[:usuarioId]
+          usuarioId: current_user.id
         }
       ))
   end
@@ -44,13 +44,13 @@ class BicicletasController < ApplicationController
           marca: bicicleta_params[:marca],
           estado: bicicleta_params[:estado],
           valorPorHora: bicicleta_params[:valorPorHora],
-          usuarioId: bicicleta_params[:usuarioId]
+          usuarioId: current_user.id
         }
       ))
   end
 
   def destroy
-    render json: @stub.delete_bicicleta(
+    render json: @stub.inactivate_bicicleta(
       Paraibike::Bicicleta.new(
         {
           id: bicicleta_params[:id].to_i,

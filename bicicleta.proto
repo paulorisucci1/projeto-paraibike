@@ -48,7 +48,7 @@ service BicicletaService {
   rpc listBicicletasByLocador(Usuario) returns (Bicicletas) {}
   rpc createBicicleta(Bicicleta) returns (Bicicleta) {}
   rpc updateBicicleta(Bicicleta) returns (Bicicleta) {}
-  rpc deleteBicicleta(Bicicleta) returns (Feedback) {}
+  rpc inactivateBicicleta(Bicicleta) returns (Feedback) {}
 }
 
 service AluguelService {
@@ -56,5 +56,5 @@ service AluguelService {
   rpc listAlugueis(NoContent) returns (Alugueis) {}
   rpc createAluguel(Aluguel) returns (Aluguel) {}
   rpc updateAluguel(Aluguel) returns (Aluguel) {}
-  rpc deleteAluguel(Aluguel) returns (Feedback) {}
+  rpc cancelAluguel(Aluguel) returns (Feedback) {}
 }

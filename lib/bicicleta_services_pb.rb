@@ -19,7 +19,7 @@ module Paraibike
       rpc :listBicicletasByLocador, ::Paraibike::Usuario, ::Paraibike::Bicicletas
       rpc :createBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
       rpc :updateBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
-      rpc :deleteBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Feedback
+      rpc :inactivateBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Feedback
     end
 
     Stub = Service.rpc_stub_class

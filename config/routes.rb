@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   resources :users, param: :_username, except: :create
   resources :profile, only: [:index, :update]
   resources :bicicletas
+  resources :alugueis
   get '/*a', to: 'application#not_found'
 end

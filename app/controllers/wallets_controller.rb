@@ -1,18 +1,14 @@
 require 'bigdecimal'
+require 'bunny'
 
 class WalletsController < ApplicationController
 
   before_action :authenticate_user!, :create_wallet_if_necessary
 
-  def example
-    if current_user.wallet.nil?
-      @wallet = Wallet.create(user_id: current_user[:id])
-      @wallet.save
-      render json: @wallet, status: :created
-    else
-      render json: current_user.wallet
-    end
-  end
+  @queueConnection
+  @channel
+  @queue
+
 
   def create_wallet_if_necessary
     if current_user.wallet.nil?
@@ -29,8 +25,21 @@ class WalletsController < ApplicationController
       render json: { error: 'Valor inválido' }
     end
 
-    credit_from_wallet(@value)
+    open_connection
+    @channel.default_exchange
+            .publish("{ \"user\": { \"email\": \"#{current_user.email}\" }, \"value\": \"#{@value}\" }", routing_key: @queue.name)
+    @queueConnection.close
+
     render json: current_user.wallet, status: :created
+  end
+
+  def open_connection
+    if @queueConnection.nil?
+      @queueConnection = Bunny.new(hostname: 'host.docker.internal')
+    end
+    @queueConnection.start
+    @channel = @queueConnection.create_channel
+    @queue = @channel.queue('payments')
   end
 
   #POST /wallet/debit

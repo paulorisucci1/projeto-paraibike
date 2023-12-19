@@ -8,7 +8,8 @@ class AlugueisController < ApplicationController
   before_action :stub
 
   def index
-    render json: @stub.list_alugueis(Paraibike::NoContent.new)
+    render json: @stub.list_alugueis_for_user(Paraibike::Usuario.new({id: current_user.id}))
+
   end
 
   def show

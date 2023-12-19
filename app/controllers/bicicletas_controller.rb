@@ -7,7 +7,7 @@ class BicicletasController < ApplicationController
   before_action :stub
 
   def index
-    render json: @stub.list_bicicletas(Paraibike::NoContent.new)
+    render json: @stub.list_bicicletas_by_locador(Paraibike::Usuario.new({id: current_user.id}))
   end
 
   def show

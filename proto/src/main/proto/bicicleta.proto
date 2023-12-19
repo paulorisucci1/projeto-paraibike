@@ -61,6 +61,7 @@ service BicicletaService {
 service AluguelService {
   rpc find_aluguel(Aluguel) returns (Aluguel) {}
   rpc list_alugueis(NoContent) returns (Alugueis) {}
+  rpc list_alugueis_for_user(Usuario) returns (Alugueis) {}
   rpc create_aluguel(Aluguel) returns (Aluguel) {}
   rpc update_aluguel(Aluguel) returns (Aluguel) {}
   rpc cancel_aluguel(Aluguel) returns (Feedback) {}

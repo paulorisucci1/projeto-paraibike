@@ -51,6 +51,23 @@ public class AluguelService extends AluguelServiceGrpc.AluguelServiceImplBase {
     }
 
     @Override
+    public void listAlugueisForUser(Usuario request, StreamObserver<Alugueis> responseObserver) {
+
+
+        final var entities = aluguelRepository.findByUsuarioId(request.getId());
+        final var responses = Alugueis.newBuilder();
+
+        if(!entities.isEmpty()) {
+            entities.forEach(
+                    aluguelEntity -> responses.addAluguel(AluguelMapper.createAluguelFrom(aluguelEntity))
+            );
+        }
+
+        responseObserver.onNext(responses.build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
     public void createAluguel(Aluguel aluguelRequest, StreamObserver<Aluguel> responseObserver) {
         final var newAluguel = AluguelMapper.createAluguelEntityFrom(aluguelRequest);
         newAluguel.setBicicleta(findBicicletaForAluguel(aluguelRequest));

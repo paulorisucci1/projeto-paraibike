@@ -61,12 +61,6 @@ class WalletsController < ApplicationController
     render json: Wallet.find_by(user: current_user)
   end
 
-  def credit_from_wallet(value)
-    @wallet = current_user.wallet
-    @wallet.balance += value
-    @wallet.save
-  end
-
   def debit_from_wallet(value)
     @wallet = current_user.wallet
     @wallet.balance -= value

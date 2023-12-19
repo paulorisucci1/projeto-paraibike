@@ -8,6 +8,7 @@ class ProfileController < ApplicationController
   def index
     render json: {
       user: UserSerializer.new(current_user).serializable_hash[:data][:attributes],
+      wallet: WalletSerializer.new(current_user.wallet).serializable_hash[:data][:attributes],
       bikes: stub.list_bicicletas(Paraibike::NoContent.new)
     }, status: :ok
   end

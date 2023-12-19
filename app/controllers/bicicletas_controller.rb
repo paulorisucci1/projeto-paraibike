@@ -29,7 +29,7 @@ class BicicletasController < ApplicationController
           codigo: bicicleta_params[:codigo],
           marca: bicicleta_params[:marca],
           estado: bicicleta_params[:estado],
-          valorPorHora: bicicleta_params[:valorPorHora],
+          valorPorHora: bicicleta_params[:valorPorHora].to_s,
           usuarioId: current_user.id
         }
       ))
@@ -43,7 +43,7 @@ class BicicletasController < ApplicationController
           codigo: bicicleta_params[:codigo],
           marca: bicicleta_params[:marca],
           estado: bicicleta_params[:estado],
-          valorPorHora: bicicleta_params[:valorPorHora],
+          valorPorHora: bicicleta_params[:valorPorHora].to_s,
           usuarioId: current_user.id
         }
       ))

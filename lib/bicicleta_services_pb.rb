@@ -2,7 +2,7 @@
 # Source: bicicleta.proto for package 'paraibike'
 
 require 'grpc'
-require 'bicicleta'
+require 'bicicleta_pb'
 
 module Paraibike
   module BicicletaService
@@ -14,12 +14,12 @@ module Paraibike
       self.unmarshal_class_method = :decode
       self.service_name = 'paraibike.BicicletaService'
 
-      rpc :findBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
-      rpc :listBicicletas, ::Paraibike::NoContent, ::Paraibike::Bicicletas
-      rpc :listBicicletasByLocador, ::Paraibike::Usuario, ::Paraibike::Bicicletas
-      rpc :createBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
-      rpc :updateBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
-      rpc :inactivateBicicleta, ::Paraibike::Bicicleta, ::Paraibike::Feedback
+      rpc :find_bicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
+      rpc :list_bicicletas, ::Paraibike::NoContent, ::Paraibike::Bicicletas
+      rpc :list_bicicletas_by_locador, ::Paraibike::Usuario, ::Paraibike::Bicicletas
+      rpc :create_bicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
+      rpc :update_bicicleta, ::Paraibike::Bicicleta, ::Paraibike::Bicicleta
+      rpc :inactivate_bicicleta, ::Paraibike::Bicicleta, ::Paraibike::Feedback
     end
 
     Stub = Service.rpc_stub_class
@@ -33,11 +33,11 @@ module Paraibike
       self.unmarshal_class_method = :decode
       self.service_name = 'paraibike.AluguelService'
 
-      rpc :findAluguel, ::Paraibike::Aluguel, ::Paraibike::Aluguel
-      rpc :listAlugueis, ::Paraibike::NoContent, ::Paraibike::Alugueis
-      rpc :createAluguel, ::Paraibike::Aluguel, ::Paraibike::Aluguel
-      rpc :updateAluguel, ::Paraibike::Aluguel, ::Paraibike::Aluguel
-      rpc :deleteAluguel, ::Paraibike::Aluguel, ::Paraibike::Feedback
+      rpc :find_aluguel, ::Paraibike::Aluguel, ::Paraibike::Aluguel
+      rpc :list_alugueis, ::Paraibike::NoContent, ::Paraibike::Alugueis
+      rpc :create_aluguel, ::Paraibike::Aluguel, ::Paraibike::Aluguel
+      rpc :update_aluguel, ::Paraibike::Aluguel, ::Paraibike::Aluguel
+      rpc :cancel_aluguel, ::Paraibike::Aluguel, ::Paraibike::Feedback
     end
 
     Stub = Service.rpc_stub_class

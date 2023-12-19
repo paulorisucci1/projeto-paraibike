@@ -7,10 +7,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  database: paraibike
+  database: postgres
   username: default
   password: secret
-  host: paraibike-db-1
+  host: rails_db_1
 
 development:
   <<: *default

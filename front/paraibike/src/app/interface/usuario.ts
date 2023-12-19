@@ -1,3 +1,5 @@
+import { Carteira } from "./carteira";
+
 export interface Usuario {
     name: string;
     username: string;
@@ -5,4 +7,5 @@ export interface Usuario {
     password: string;
     password_confirmation: string;
     flag?: number;
+    carteira: Carteira;
 }

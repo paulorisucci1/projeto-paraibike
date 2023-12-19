@@ -17,6 +17,8 @@ import { AlugarBicicletaComponent } from './components/bicicleta/alugar-biciclet
 import { ListarAlugueisComponent } from './components/aluguel/listar-alugueis/listar-alugueis.component';
 import { SidebarComponent } from './shared/template/sidebar/sidebar.component';
 import {MatIconModule} from '@angular/material/icon';
+import { StoreModule } from '@ngrx/store';
+import { carteiraReducer } from './store/reducers/carteira.reducer';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {MatIconModule} from '@angular/material/icon';
     CoreModule,
     ReactiveFormsModule,
     SharedModule,
-    MatIconModule
+    MatIconModule,
+    StoreModule.forRoot({ carteira: carteiraReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent]

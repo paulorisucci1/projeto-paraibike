@@ -8,7 +8,7 @@
     </div>
     <div class="sidebar-heading">
       <mat-icon>account_circle</mat-icon>
-      R$ {{ creditos }}
+    <span> R$ {{ (carteira$ | async)?.valor }}  </span> 
       <p>Menu Principal</p>
     </div>
 

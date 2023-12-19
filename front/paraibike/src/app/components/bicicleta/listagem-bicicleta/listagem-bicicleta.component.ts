@@ -12,7 +12,7 @@ import { BicicletaService } from 'src/app/service/bicicleta.service';
 })
 export class ListagemBicicletaComponent {
 
-  bicicletas!: Bicicleta[];
+  bicicletas: Bicicleta[] = [];
   displayedColumns: string[] = ['codigo', 'marca', 'estado', 'acoes'];
   resultadoBusca: any[] = [];
   buscando: boolean = false;
@@ -35,40 +35,8 @@ export class ListagemBicicletaComponent {
 
   listar(){
 
-    // MOCKANDO para testar
-    let newBicicleta: Bicicleta = {
-      id: 1,
-      codigo: "123",
-      marca: "Caloi",
-      valorPorHora: "10",
-      estado: "Disponível",
-      usuarioId: 1
-    };
-
-    let newBicicleta2: Bicicleta = {
-      id: 2,
-      codigo: "125",
-      marca: "Oasis",
-      valorPorHora: "20",
-      estado: "Bom estado",
-      usuarioId: 1
-    };
-
-    let newBicicleta3: Bicicleta = {
-      id: 2,
-      codigo: "126",
-      marca: "Caos",
-      valorPorHora: "30",
-      estado: "Nova",
-      usuarioId: 1
-    };
-    
-    // MOCKANDO para testar
-    this.bicicletas = [newBicicleta, newBicicleta2, newBicicleta3];
-    console.log(this.bicicletas);
-
-    this.bicicletaService.listarBicicletas().subscribe((bicicletas: Bicicleta[]) => {
-      this.bicicletas = bicicletas;
+    this.bicicletaService.listarBicicletas().subscribe((response) => {
+      this.bicicletas = response.bicicletas;
       console.log(this.bicicletas);
     });
   }
@@ -104,7 +72,7 @@ export class ListagemBicicletaComponent {
     const marca = this.formulario.get('marca')?.value;
     const estadoSelecionado = this.formulario.get('selectedEstado')?.value as unknown as string;
     const valorSelecionado = this.formulario.get('selectedValor')?.value as unknown as string;
-  
+
     // Verifica se há uma marca, um estado ou um valor selecionado
     if (marca || (estadoSelecionado && estadoSelecionado !== 'Estado') || (valorSelecionado && valorSelecionado !== 'Valor')) {
       this.resultadoBusca = this.bicicletas.filter(bicicleta =>
@@ -112,7 +80,7 @@ export class ListagemBicicletaComponent {
         (!estadoSelecionado || bicicleta.estado === estadoSelecionado) &&
         (!valorSelecionado || bicicleta.valorPorHora === valorSelecionado)
       );
-  
+
       if (this.resultadoBusca.length > 0) {
         // this.alertaService.alertaSucesso("Busca realizada com sucesso");
       } else {
@@ -123,9 +91,9 @@ export class ListagemBicicletaComponent {
     }
     this.buscando = true;
   }
-  
+
   limpar(){
     this.formulario.reset();
   }
-  
+
 }

@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CreditosService {
-  
-  private readonly API = `${environment.api_auth_url}/wallet`;
+
+  private readonly API = `${environment.api_base_url}/wallet`;
 
   constructor(private http: HttpClient) { }
 
@@ -17,13 +17,13 @@ export class CreditosService {
     return this.http.get<Carteira>(`${this.API}`);
   }
 
-  debitar(valorDebito: number) {
-    return this.http.post(`${this.API}`, {valorDebito});
+  // POST /wallet/credit
+  creditar(value: Number) {
+    return this.http.post(`${this.API}/credit`, {"value": value})
   }
 
-  // POST /wallet/credit 
-  comprarCreditos() {
-    return this.http.post(`${this.API}/credit`, {});
+  debitar(valorDebito: number) {
+    return this.http.post(`${this.API}/debit`, {"value":valorDebito});
   }
-  
+
 }

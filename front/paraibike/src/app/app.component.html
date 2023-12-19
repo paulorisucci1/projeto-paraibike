@@ -1,5 +1,4 @@
-<app-sidebar>
-   <!-- <app-sidebar *ngIf="token"> -->
+<app-sidebar *ngIf="token">
   <div class="container-fluid">
      <div class="row">
         <div class="col-md-12">
@@ -8,6 +7,5 @@
      </div>
   </div>
 </app-sidebar>
-<router-outlet></router-outlet>
-<!-- <router-outlet *ngIf="!token"></router-outlet> -->
+<router-outlet *ngIf="!token"></router-outlet>
 

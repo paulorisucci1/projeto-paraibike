@@ -1,4 +1,5 @@
 import { Carteira } from "./carteira";
+import {Wallet} from "./wallet";
 
 export interface Usuario {
     name: string;
@@ -7,5 +8,5 @@ export interface Usuario {
     password: string;
     password_confirmation: string;
     flag?: number;
-    carteira: Carteira;
+    wallet: Wallet;
 }

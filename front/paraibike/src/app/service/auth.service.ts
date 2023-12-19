@@ -11,9 +11,8 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private logadoEm = new BehaviorSubject<boolean>(false);
 
-  private readonly API = `${environment.api_auth_url}/auth/login`;
+  private readonly API = `${environment.api_base_url}/auth/login`;
 
-  public readonly userId = 1;
 
   estaLogado$ = this.logadoEm.asObservable();
 

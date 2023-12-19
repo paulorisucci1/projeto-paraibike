@@ -9,10 +9,10 @@ import { environment } from 'src/environments/environment';
 export class AluguelService {
 
   private readonly API = `${environment.api_base_url}/alugueis`;
-  
+
   constructor(private http: HttpClient) { }
 
-  listarAlugueis() {
+  listarAlugueis(): any {
     return this.http.get<Aluguel[]>(`${this.API}`);
   }
 

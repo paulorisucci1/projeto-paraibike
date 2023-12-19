@@ -7,6 +7,8 @@ import { CadastroBicicletaComponent } from './components/bicicleta/cadastro-bici
 import { ListagemBicicletaComponent } from './components/bicicleta/listagem-bicicleta/listagem-bicicleta.component';
 import { AlugarBicicletaComponent } from './components/bicicleta/alugar-bicicleta/alugar-bicicleta.component';
 import { ListarAlugueisComponent } from './components/aluguel/listar-alugueis/listar-alugueis.component';
+import {ComprarCreditosComponent} from "./components/comprar-creditos/comprar-creditos.component";
+import {SidebarComponent} from "./shared/template/sidebar/sidebar.component";
 
 const routes: Routes = [
   {
@@ -51,6 +53,16 @@ const routes: Routes = [
     path: 'listar-alugueis',
     canActivate: [AuthGuard],
     component: ListarAlugueisComponent
+  },
+  {
+    path: 'comprar-creditos',
+    canActivate: [AuthGuard],
+    component: ComprarCreditosComponent
+  },
+  {
+    path: 'sidebar',
+    canActivate: [AuthGuard],
+    component: SidebarComponent
   }
 ];
 

@@ -19,6 +19,7 @@ import { SidebarComponent } from './shared/template/sidebar/sidebar.component';
 import {MatIconModule} from '@angular/material/icon';
 import { StoreModule } from '@ngrx/store';
 import { carteiraReducer } from './store/reducers/carteira.reducer';
+import { ComprarCreditosComponent } from './components/comprar-creditos/comprar-creditos.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { carteiraReducer } from './store/reducers/carteira.reducer';
     SidebarComponent,
     AlugarBicicletaComponent,
     ListarAlugueisComponent,
+    ComprarCreditosComponent,
   ],
   imports: [
     BrowserModule,

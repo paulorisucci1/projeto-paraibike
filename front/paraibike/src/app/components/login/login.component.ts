@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Login } from 'src/app/interface/login';
 import { AlertaService } from 'src/app/service/alerta.service';
 import { AuthService } from 'src/app/service/auth.service';
+import {UsuarioService} from "../../service/usuario.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
     private authService: AuthService,
     private alertaService: AlertaService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private usuarioService: UsuarioService
   ) { }
 
   enviar(): void {

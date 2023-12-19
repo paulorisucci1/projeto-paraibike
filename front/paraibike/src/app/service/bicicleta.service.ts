@@ -18,7 +18,7 @@ export class BicicletaService {
   }
 
   listarBicicletas(){
-    return this.http.get<Bicicleta[]>(`${this.API}`);
+    return this.http.get<any>(`${this.API}`);
   }
 
   alterarBicicleta(bicicleta: Bicicleta){

@@ -4,11 +4,11 @@
     </a>
     <hr class="sidebar-divider">
     <div>
-      
+
     </div>
     <div class="sidebar-heading">
       <mat-icon>account_circle</mat-icon>
-    <span> R$ {{ (carteira$ | async)?.valor }}  </span> 
+    <span> R$ {{ balance }}  </span>
       <p>Menu Principal</p>
     </div>
 
@@ -29,9 +29,9 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link collapsed" (click)="mudarRota('listar-alugueis')">
+      <a class="nav-link collapsed" (click)="mudarRota('comprar-creditos')">
           <mat-icon style="font-size: 1rem;">add_shopping_cart</mat-icon>
-          <i class="fa-cpanel"></i> 
+          <i class="fa-cpanel"></i>
         <span>Comprar créditos</span>
       </a>
     </li>

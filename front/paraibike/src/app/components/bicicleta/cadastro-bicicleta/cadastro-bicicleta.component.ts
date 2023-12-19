@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bicicleta } from 'src/app/interface/bicicleta';
 import { AlertaService } from 'src/app/service/alerta.service';
 import { BicicletaService } from 'src/app/service/bicicleta.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-cadastro-bicicleta',

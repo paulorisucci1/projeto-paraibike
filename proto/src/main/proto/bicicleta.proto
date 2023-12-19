@@ -50,18 +50,18 @@ message Feedback {
 }
 
 service BicicletaService {
-  rpc findBicicleta(Bicicleta) returns (Bicicleta) {}
-  rpc listBicicletas(NoContent) returns (Bicicletas) {}
-  rpc listBicicletasByLocador(Usuario) returns (Bicicletas) {}
-  rpc createBicicleta(Bicicleta) returns (Bicicleta) {}
-  rpc updateBicicleta(Bicicleta) returns (Bicicleta) {}
-  rpc inactivateBicicleta(Bicicleta) returns (Feedback) {}
+  rpc find_bicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc list_bicicletas(NoContent) returns (Bicicletas) {}
+  rpc list_bicicletas_by_locador(Usuario) returns (Bicicletas) {}
+  rpc create_bicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc update_bicicleta(Bicicleta) returns (Bicicleta) {}
+  rpc inactivate_bicicleta(Bicicleta) returns (Feedback) {}
 }
 
 service AluguelService {
-  rpc findAluguel(Aluguel) returns (Aluguel) {}
-  rpc listAlugueis(NoContent) returns (Alugueis) {}
-  rpc createAluguel(Aluguel) returns (Aluguel) {}
-  rpc updateAluguel(Aluguel) returns (Aluguel) {}
-  rpc cancelAluguel(Aluguel) returns (Feedback) {}
+  rpc find_aluguel(Aluguel) returns (Aluguel) {}
+  rpc list_alugueis(NoContent) returns (Alugueis) {}
+  rpc create_aluguel(Aluguel) returns (Aluguel) {}
+  rpc update_aluguel(Aluguel) returns (Aluguel) {}
+  rpc cancel_aluguel(Aluguel) returns (Feedback) {}
 }

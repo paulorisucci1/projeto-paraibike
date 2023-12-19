@@ -34,19 +34,4 @@ public class BicicletaMapper {
                 .build();
     }
 
-
-    public static BicicletaEntity createBicicletaEntityForAluguel(Bicicleta bicicleta) {
-
-        BicicletaEntity bicicletaEntity = new BicicletaEntity();
-        bicicletaEntity.setId(bicicleta.getId());
-        bicicletaEntity.setValorPorHora(new BigDecimal(bicicleta.getValorPorHora()));
-        return bicicletaEntity;
-    }
-
-    public static Bicicleta createBicicletaWithId(BicicletaEntity bicicletaEntity) {
-        return Bicicleta
-                .newBuilder()
-                .setId(bicicletaEntity.getId())
-                .build();
-    }
 }

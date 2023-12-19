@@ -14,13 +14,25 @@ public class AluguelMapper {
     public static AluguelEntity createAluguelEntityFrom(Aluguel aluguel) {
         AluguelEntity aluguelEntity = new AluguelEntity();
 
-        aluguelEntity.setId(aluguel.getId());
-        aluguelEntity.setUsuarioId(aluguel.getUsuarioId());
-        aluguelEntity.setBicicleta(createBicicletaEntityForAluguel(aluguel.getBicicleta()));
-        aluguelEntity.setData(LocalDateTime.parse(aluguel.getData(), DateTimeFormatter.ISO_DATE_TIME));
-        aluguelEntity.setQuantidadeHoras(aluguel.getQuantidadeHoras());
-        aluguelEntity.setStatus(StatusAluguel.getStatusFromDescricao(aluguel.getStatus()));
-        aluguelEntity.addValor();
+        if(aluguel.getId() != 0) {
+            aluguelEntity.setId(aluguel.getId());
+        }
+
+        if(aluguel.getUsuarioId() != 0) {
+            aluguelEntity.setUsuarioId(aluguel.getUsuarioId());
+        }
+
+        if(!aluguel.getData().isEmpty()) {
+            aluguelEntity.setData(LocalDateTime.parse(aluguel.getData(), DateTimeFormatter.ISO_DATE_TIME));
+        }
+
+        if(aluguel.getQuantidadeHoras() != 0) {
+            aluguelEntity.setQuantidadeHoras(aluguel.getQuantidadeHoras());
+        }
+
+        if(!aluguel.getStatus().isEmpty()) {
+            aluguelEntity.setStatus(StatusAluguel.getStatusFromDescricao(aluguel.getStatus()));
+        }
 
         return aluguelEntity;
     }

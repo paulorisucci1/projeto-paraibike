@@ -3,17 +3,23 @@ package br.edu.ifpb.pdist.grpcservice.service;
 import br.com.paraibike.protofiles.*;
 import br.edu.ifpb.pdist.grpcservice.mapper.AluguelMapper;
 import br.edu.ifpb.pdist.grpcservice.model.AluguelEntity;
+import br.edu.ifpb.pdist.grpcservice.model.BicicletaEntity;
 import br.edu.ifpb.pdist.grpcservice.model.StatusAluguel;
 import br.edu.ifpb.pdist.grpcservice.repository.AluguelRepository;
+import br.edu.ifpb.pdist.grpcservice.repository.BicicletaRepository;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
+
+import java.time.LocalDateTime;
 
 @GrpcService
 @AllArgsConstructor
 public class AluguelService extends AluguelServiceGrpc.AluguelServiceImplBase {
 
     private AluguelRepository aluguelRepository;
+
+    private BicicletaRepository bicicletaRepository;
 
     @Override
     public void findAluguel(Aluguel request, StreamObserver<Aluguel> responseObserver) {
@@ -45,9 +51,11 @@ public class AluguelService extends AluguelServiceGrpc.AluguelServiceImplBase {
     }
 
     @Override
-    public void createAluguel(Aluguel request, StreamObserver<Aluguel> responseObserver) {
-        final var newEntity = AluguelMapper.createAluguelEntityFrom(request);
-        final var createdEntity = aluguelRepository.save(newEntity);
+    public void createAluguel(Aluguel aluguelRequest, StreamObserver<Aluguel> responseObserver) {
+        final var newAluguel = AluguelMapper.createAluguelEntityFrom(aluguelRequest);
+        newAluguel.setBicicleta(findBicicletaForAluguel(aluguelRequest));
+        newAluguel.addValor();
+        final var createdEntity = aluguelRepository.save(newAluguel);
         final var response = AluguelMapper.createAluguelFrom(createdEntity);
 
         responseObserver.onNext(response);
@@ -57,9 +65,10 @@ public class AluguelService extends AluguelServiceGrpc.AluguelServiceImplBase {
     @Override
     public void updateAluguel(Aluguel request, StreamObserver<Aluguel> responseObserver) {
         final var updateRequest = AluguelMapper.createAluguelEntityFrom(request);
-        final var updatedAluguel = findAluguelEntityIfExist(updateRequest.getId());
-        updatedAluguel.updateFrom(updateRequest);
-        final var response = AluguelMapper.createAluguelFrom(aluguelRepository.save(updatedAluguel));
+        final var aluguelBD = findAluguelEntityIfExist(updateRequest.getId());
+        aluguelBD.updateFrom(updateRequest);
+        aluguelBD.addValor();
+        final var response = AluguelMapper.createAluguelFrom(aluguelRepository.save(aluguelBD));
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
@@ -83,8 +92,19 @@ public class AluguelService extends AluguelServiceGrpc.AluguelServiceImplBase {
     private AluguelEntity findAluguelEntityIfExist(Integer aluguelId) {
         final var aluguel = aluguelRepository.findById(aluguelId);
         if(aluguel.isEmpty()) {
-            throw new RuntimeException("Deu merda");
+            throw new RuntimeException("Deu merda: Aluguel não encontrado para o id");
         }
         return aluguel.get();
+    }
+
+    private BicicletaEntity findBicicletaForAluguel(Aluguel aluguel) {
+
+        final var bicicleta = bicicletaRepository.findById(aluguel.getBicicleta().getId());
+
+        if(bicicleta.isEmpty()) {
+            throw new RuntimeException("Fodeu: bicicleta não encontrada para o aluguel");
+        }
+
+        return bicicleta.get();
     }
 }
